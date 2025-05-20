@@ -9,7 +9,7 @@ body {
     font-family: 'Roboto', Arial, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f4f4f4;
+    
 }
 
 .container {
@@ -18,11 +18,19 @@ body {
     padding: 0 20px;
 }
 
+.logo-area img {
+    width: 20%;
+    height: auto;
+    display: block; 
+    
+}
+
 /* Header Styles (Black Bar with Logo) */
 header {
     background-color: #000;
     color: #fff;
-    padding: 15px 0; /* Aumentei um pouco o padding vertical */
+    padding: 15px 0;
+     /* Aumentei um pouco o padding vertical */
     /* Removida a border-bottom amarela daqui */
 }
 
@@ -35,32 +43,22 @@ header {
 /* O logo-area agora fica sozinho no container do header, alinhado à esquerda por padrão */
 
 .logo-area .logo {
-    font-family: 'Roboto', sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 900;
     font-size: 2.8em;
     color: #fff;
     letter-spacing: 1px;
     margin: 0; /* Garante que não há margem extra no h1 */
-}
-
-.fit-logo {
-    position: relative;
-    display: inline-block;
-}
-
-.fit-logo .fit-line {
-    position: absolute;
-    height: 3px;
-    background-color: #fff;
-    width: 100%;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
+    display: flex;
+    justify-content: center; /* Centraliza os itens na linha */
+    align-items: flex-start;
 }
 
 .logo-area .tagline {
     font-size: 0.8em;
+    display: flex;
+    justify-content: center; /* Centraliza os itens na linha */
+    align-items: flex-start;
     color: #ccc;
     margin-top: 2px; /* Ajuste fino da margem */
 }
@@ -186,25 +184,23 @@ header {
     background-color: #fff;
 }
 
+
+
 .about-us .section-title {
-    font-size: 2.2em;
-    color: #222;
-    margin-bottom: 20px;
-    font-weight: 900;
-    text-transform: lowercase;
-    position: relative;
-    padding-bottom: 10px;
-    display: inline-block;
+    font-family: 'Roboto', sans-serif; /* Ou a fonte geométrica que você usou para o logo */
+    font-size: 2em; /* Ajuste o tamanho conforme necessário */
+    color: #000; /* Cor preta para o título */
+    font-weight: 700; /* Bold */
+    text-transform: uppercase;
+    margin: 0; /* Remove margens padrão do h2 */
+    padding-right: 20px; /* Espaço entre o texto e a linha */
+    white-space: nowrap;
 }
 
-.about-us .section-title::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 70px;
-    height: 4px;
-    background-color: #333;
+.about-us .section-title-line {
+    flex-grow: 1; /* Faz a linha ocupar o espaço restante */
+    height: 2px;  /* Espessura da linha */
+    background-color: #000; /* Cor da linha */
 }
 
 .about-us p {
@@ -212,6 +208,13 @@ header {
     color: #555;
     font-size: 1em;
     line-height: 1.7;
+}
+
+.space-block {
+    display: flex;
+    align-items: center; /* Alinha verticalmente a imagem e o texto */
+    gap: 40px; /* Espaço entre a imagem e o texto */
+    margin-bottom: 50px; /* Espaço entre os blocos */
 }
 
 .about-us p strong {
