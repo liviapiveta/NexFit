@@ -19,73 +19,45 @@ body {
 
 .banner img {
     width: 100%;
-
 }
 
 .logo-area img {
     width: 20%;
     height: auto;
     display: block;
-
 }
 
-/* Header Styles (Black Bar with Logo) */
+/* Header Styles (Black Bar with Logo and Button) */
 header {
     background-color: #000;
     color: #fff;
     padding: 15px 0;
-    /* Aumentei um pouco o padding vertical */
-    /* Removida a border-bottom amarela daqui */
 }
 
-/* Se .header-content era usado apenas para o flex, pode ser removido do CSS ou simplificado */
-/* .header-content {
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-} */
-/* O logo-area agora fica sozinho no container do header, alinhado à esquerda por padrão */
-
-.logo-area .logo {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 900;
-    font-size: 2.8em;
-    color: #fff;
-    letter-spacing: 1px;
-    margin: 0;
-    /* Garante que não há margem extra no h1 */
-    display: flex;
-    justify-content: center;
-    /* Centraliza os itens na linha */
-    align-items: flex-start;
 }
 
 .logo-area .tagline {
     font-size: 0.8em;
     display: block;
-    justify-content: center;
-    /* Centraliza os itens na linha */
-    align-items: flex-start;
     color: #ccc;
     margin-top: 2px;
-    /* Ajuste fino da margem */
 }
 
 /* Main Navigation Bar Styles (Yellow Bar) */
 .main-navigation {
     background-color: #ffff00;
-    /* Amarelo */
     padding: 12px 0;
-    /* Padding para a barra de navegação */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra sutil opcional */
 }
 
 .main-navigation nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    /* Centraliza os itens do menu */
     align-items: center;
     padding: 0;
     margin: 0;
@@ -93,139 +65,25 @@ header {
 
 .main-navigation nav ul li {
     margin: 0 20px;
-    /* Espaçamento entre os itens do menu */
 }
 
 .main-navigation nav ul li a {
     color: #000;
-    /* Cor do texto preta para contraste com amarelo */
     text-decoration: none;
     font-weight: bold;
     font-size: 1em;
-    /* Tamanho da fonte dos links do menu */
     padding: 5px 0;
-    /* Padding para melhor área de clique */
     transition: color 0.3s ease;
 }
 
 .main-navigation nav ul li a:hover {
     color: #333;
-    /* Cor ao passar o mouse */
 }
 
-
-/* Hero Section Styles (Permanece o mesmo) */
-.hero {
-    position: relative;
-    color: #fff;
-    text-align: center;
-    padding: 100px 0 120px;
-    overflow: hidden;
-    background: #003366;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(to right,
-            rgba(255, 255, 0, 0.95) 0%,
-            rgba(255, 255, 0, 0.7) 30%,
-            rgba(0, 86, 179, 0.8) 60%,
-            rgba(0, 51, 102, 1) 100%);
-    z-index: 1;
-}
-
-.hero-text-content {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-subtitle {
-    font-size: 1.6em;
-    margin-bottom: 10px;
-    font-weight: normal;
-}
-
-.hero-subtitle strong {
-    font-weight: 700;
-}
-
-.hero-title {
-    font-family: 'Pacifico', cursive;
-    font-size: 6em;
-    color: #ffff00;
-    margin-bottom: 25px;
-    line-height: 1.1;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-}
-
-.hero-cta {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.hero-cta .nexfit-cta {
-    font-weight: 900;
-}
-
-.dumbbell-icon {
-    position: absolute;
-    z-index: 2;
-    opacity: 0.15;
-    width: 150px;
-    height: 150px;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M20.56,10.44a8,8,0,0,0-1.12-10A1,1,0,0,0,18.7,0L17.23.37a1,1,0,0,0-.7.93v2a1,1,0,0,1-.29.71L12.5,7.75V6A1,1,0,0,0,12,5H8A1,1,0,0,0,7,6V7.75L3.25,4.06A1,1,0,0,1,3,3.29V1.31a1,1,0,0,0-.7-.93L.83.05A1,1,0,0,0,0,.79,8,8,0,0,0,3.44,10.44,8,8,0,0,0,0,20.05L.37,21.52a1,1,0,0,0,.93.7L3.77,24a1,1,0,0,0,.7-.29L7.75,20.5V22a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1V20.5l3.25,3.25a1,1,0,0,0,.7.29l2.47-.37a1,1,0,0,0,.7-.93A8,8,0,0,0,20.56,10.44ZM5,12a1,1,0,0,1,0-2,1,1,0,0,1,0,2Zm14,0a1,1,0,0,1,0-2,1,1,0,0,1,0,2Z"/></svg>');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.dumbbell-icon.left {
-    left: 5%;
-    top: 50%;
-    transform: translateY(-50%) rotate(-15deg);
-}
-
-.dumbbell-icon.right {
-    right: 5%;
-    top: 40%;
-    transform: translateY(-50%) rotate(15deg);
-}
-
-/* About Us Section Styles (Permanece o mesmo) */
+/* About Us Section Styles */
 .about-us {
     padding-top: 60px;
     background-color: #fff;
-}
-
-
-
-.about-us .section-title {
-    font-family: 'Roboto', sans-serif;
-    /* Ou a fonte geométrica que você usou para o logo */
-    font-size: 2em;
-    /* Ajuste o tamanho conforme necessário */
-    color: #000;
-    /* Cor preta para o título */
-    font-weight: 700;
-    /* Bold */
-    text-transform: uppercase;
-    margin: 0;
-    /* Remove margens padrão do h2 */
-    padding-right: 20px;
-    /* Espaço entre o texto e a linha */
-    white-space: nowrap;
-}
-
-.about-us .section-title-line {
-    flex-grow: 1;
-    /* Faz a linha ocupar o espaço restante */
-    height: 2px;
-    /* Espessura da linha */
-    background-color: #000;
-    /* Cor da linha */
 }
 
 .about-us p {
@@ -233,16 +91,6 @@ header {
     color: #555;
     font-size: 1em;
     line-height: 1.7;
-}
-
-.space-block {
-    display: flex;
-    align-items: center;
-    /* Alinha verticalmente a imagem e o texto */
-    gap: 40px;
-    /* Espaço entre a imagem e o texto */
-    margin-bottom: 50px;
-    /* Espaço entre os blocos */
 }
 
 .about-us p strong {
@@ -257,238 +105,138 @@ header {
     margin-top: 30px;
 }
 
-/* ... (todos os seus estilos anteriores) ... */
-
 /* Our Space Section Styles */
 .our-space {
     padding: 20px;
     background-color: #fff;
-    /* Mesmo background do body, conforme imagem */
 }
 
 .section-title-container {
     display: flex;
     align-items: center;
     margin-bottom: 50px;
-    /* Espaço abaixo do título e linha */
 }
 
-.section-title-alt {
+.section-title, .section-title-alt {
     font-family: 'Roboto', sans-serif;
-    /* Ou a fonte geométrica que você usou para o logo */
     font-size: 2em;
-    /* Ajuste o tamanho conforme necessário */
     color: #000;
-    /* Cor preta para o título */
     font-weight: 700;
-    /* Bold */
     text-transform: uppercase;
     margin: 0;
-    /* Remove margens padrão do h2 */
     padding-right: 20px;
-    /* Espaço entre o texto e a linha */
     white-space: nowrap;
-    /* Impede que o título quebre linha se for muito longo */
 }
 
 .section-title-line {
     flex-grow: 1;
-    /* Faz a linha ocupar o espaço restante */
     height: 2px;
-    /* Espessura da linha */
     background-color: #000;
-    /* Cor da linha */
 }
 
 .space-block {
     display: flex;
     align-items: center;
-    /* Alinha verticalmente a imagem e o texto */
     gap: 40px;
-    /* Espaço entre a imagem e o texto */
     margin-bottom: 50px;
-    /* Espaço entre os blocos */
-}
-
-.space-block:last-child {
-    margin-bottom: 0;
-    /* Remove a margem do último bloco */
-}
-
-.space-block.reverse {
-    flex-direction: row-reverse;
-    /* Inverte a ordem para o segundo bloco */
 }
 
 .space-image {
     flex: 1 1 50%;
-    /* Flex-grow, flex-shrink, flex-basis (ocupa até 50%) */
     max-width: 50%;
-    /* Garante que não ultrapasse 50% do container do bloco */
 }
 
 .space-image img {
     width: 100%;
     height: auto;
-    /* Mantém a proporção da imagem */
     display: block;
-    /* Remove espaço extra abaixo da imagem */
     border-radius: 4px;
-    /* Bordas levemente arredondadas, se desejar */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Sombra sutil na imagem */
 }
 
 .space-text {
     flex: 1 1 50%;
-    /* Ocupa o espaço restante, até 50% */
     color: #333;
-    /* Cor do texto */
     font-size: 0.95em;
-    /* Tamanho da fonte do texto */
     line-height: 1.7;
 }
 
 .space-text p {
     margin-bottom: 15px;
-    /* Espaço entre parágrafos */
 }
 
 .space-text p:last-child {
     margin-bottom: 0;
 }
 
-/* Ajustes para telas menores (Responsividade básica) */
-@media (max-width: 768px) {
-
-    .space-block,
-    .space-block.reverse {
-        flex-direction: column;
-        /* Imagem e texto um sobre o outro */
-        text-align: center;
-        /* Centraliza o texto */
-    }
-
-    .space-image {
-        max-width: 100%;
-        /* Imagem ocupa toda a largura */
-        margin-bottom: 20px;
-    }
-
-    .space-text {
-        max-width: 100%;
-    }
-
-    .section-title-alt {
-        font-size: 1.8em;
-    }
-}
-
 /* Category Section Styles (Produtos, Esportes) */
 .category-section {
     padding: 50px 0;
-    /* Espaçamento vertical da seção */
     background-color: #fff;
-    /* Cor de fundo clara, conforme imagem */
 }
-
-/* O .section-title-container, .section-title-alt e .section-title-line já existem e serão reutilizados.
-   Verifique se a margem inferior de .section-title-container (atualmente 50px) está adequada. */
 
 .category-items {
     display: flex;
     justify-content: center;
-    /* Centraliza os itens na linha */
-    align-items: flex-start;
-    /* Alinha os itens no topo */
     flex-wrap: wrap;
-    /* Permite que os itens quebrem para a próxima linha */
     gap: 25px;
-    /* Espaço entre os itens (horizontal e vertical na quebra) */
     margin-bottom: 30px;
-    /* Espaço antes do link "Saiba Mais" */
 }
 
 .category-item {
     text-align: center;
-    flex-grow: 1;
-    /* Permite que os itens cresçam para preencher o espaço */
     flex-basis: 130px;
-    /* Largura base do item antes de crescer */
     max-width: 160px;
-    /* Largura máxima de cada item */
-    /* Isso permite que caibam cerca de 5 itens em telas largas,
-       e menos itens conforme a tela diminui, devido ao flex-wrap. */
 }
 
 .category-item a {
     text-decoration: none;
     color: inherit;
-    /* Herda a cor do texto do elemento pai */
     display: block;
 }
 
 .category-image-wrapper {
     width: 120px;
-    /* Largura do círculo da imagem */
     height: 120px;
-    /* Altura do círculo da imagem */
     border-radius: 50%;
-    /* Faz o wrapper ser circular */
     overflow: hidden;
-    /* Garante que a imagem não saia do círculo */
     margin: 0 auto 15px auto;
-    /* Centraliza horizontalmente e adiciona margem abaixo */
     border: 2px solid transparent;
-    /* Borda sutil, pode ser usada para hover/focus */
     transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
-.category-item a:hover .category-image-wrapper,
-.category-item a:focus .category-image-wrapper {
+.category-item a:hover .category-image-wrapper {
     border-color: #0056b3;
-    /* Exemplo de cor de borda no hover/focus */
     transform: scale(1.05);
-    /* Leve aumento no hover/focus */
 }
 
-/* Estilo específico para as imagens da seção PRODUTOS */
 .produtos-section .category-image-wrapper {
     background-color: #003366;
-    /* Fundo azul escuro para o círculo, como na imagem */
 }
 
 .category-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Faz a imagem cobrir o wrapper. Use 'contain' se preferir ver a imagem inteira sem cortes. */
 }
 
-/* Para as bolas na seção ESPORTES, 'contain' pode ser melhor se as imagens não forem quadradas */
 .esportes-section .category-image-wrapper img {
     object-fit: contain;
 }
 
 .category-item p {
     font-size: 1em;
-    /* Tamanho do texto abaixo da imagem */
     font-weight: bold;
     color: #003366;
-    /* Cor do texto (azul escuro), como na imagem */
     margin: 0;
 }
 
 .category-item .discount-text {
     background-color: #ffff00;
-    /* Fundo amarelo para "Descontos %" */
     color: #000;
-    /* Texto preto para contraste */
     padding: 3px 8px;
     display: inline-block;
-    /* Para o background se ajustar ao texto */
     border-radius: 4px;
-    font-weight: bold;
 }
 
 .see-more-link {
@@ -498,7 +246,6 @@ header {
 
 .see-more-link a {
     color: #0056b3;
-    /* Cor padrão para links, pode ajustar */
     text-decoration: underline;
     font-size: 0.95em;
     font-weight: bold;
@@ -508,84 +255,25 @@ header {
     text-decoration: none;
 }
 
-/* Ajustes de Responsividade para os itens da categoria */
-@media (max-width: 768px) {
-
-    /* Para tablets e telas menores */
-    .category-items {
-        gap: 20px;
-        /* Reduz um pouco o espaçamento */
-    }
-
-    .category-item {
-        flex-basis: 110px;
-        /* Ajusta a largura base */
-        max-width: 180px;
-        /* Permite que cresçam um pouco mais, resultando em menos colunas (ex: 2 ou 3) */
-    }
-
-    .category-image-wrapper {
-        width: 100px;
-        height: 100px;
-    }
-
-    /* A classe .section-title-alt já tem um media query para font-size: 1.8em em 768px,
-       o que é bom para manter a consistência. */
-}
-
-@media (max-width: 480px) {
-
-    /* Para celulares */
-    .category-items {
-        gap: 15px;
-    }
-
-    .category-item {
-        flex-basis: calc(50% - 10px);
-        /* Tenta manter 2 itens por linha */
-        max-width: calc(50% - 10px);
-        /* Ajusta para o cálculo com gap */
-    }
-
-    .category-image-wrapper {
-        width: 90px;
-        height: 90px;
-    }
-
-    .category-item p {
-        font-size: 0.9em;
-    }
-}
-
 /* Footer Styles */
 .site-footer {
     background-color: #000;
-    /* Fundo preto */
     color: #ccc;
-    /* Cor de texto padrão para o footer (cinza claro) */
     padding: 50px 0 20px;
-    /* Espaçamento: 50px topo, 0 laterais, 20px base */
     font-size: 0.9em;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
-    /* Distribui os elementos principais */
     align-items: flex-start;
-    /* Alinha os itens no topo */
     flex-wrap: wrap;
-    /* Permite quebra de linha em telas menores */
     gap: 30px;
-    /* Espaço entre os blocos principais */
     margin-bottom: 30px;
-    /* Espaço antes do copyright */
 }
 
 .footer-logo-area {
     flex: 1 1 250px;
-    /* Flex-grow, flex-shrink, flex-basis */
-    min-width: 220px;
 }
 
 .footer-logo-area img{
@@ -595,25 +283,19 @@ header {
 .footer-logo-area .tagline {
     font-size: 0.85em;
     color: #fff;
-    /* Tagline branca como na imagem */
     margin-top: 0;
     line-height: 1.4;
 }
 
 .footer-links-column {
     flex: 1 1 150px;
-    /* Permite que as colunas de link cresçam e encolham */
-    min-width: 130px;
 }
 
 .footer-links-column h4 {
     color: #fff;
-    /* Títulos das colunas em branco */
     font-size: 1.1em;
     font-weight: bold;
     margin-bottom: 15px;
-    text-transform: none;
-    /* Se não quiser uppercase */
 }
 
 .footer-links-column ul {
@@ -628,21 +310,13 @@ header {
 
 .footer-links-column ul li a {
     color: #ccc;
-    /* Cor dos links */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-links-column ul li a:hover {
     color: #ffff00;
-    /* Cor amarela no hover */
     text-decoration: underline;
-}
-
-.footer-social {
-    flex: 1 1 180px;
-    /* Ajuste a base conforme necessário */
-    min-width: 160px;
 }
 
 .footer-social h4 {
@@ -655,98 +329,187 @@ header {
 .social-icons {
     display: flex;
     gap: 15px;
-    /* Espaço entre os ícones */
 }
 
 .social-icons a svg {
     width: 28px;
-    /* Tamanho dos ícones */
     height: 28px;
     fill: #fff;
-    /* Cor dos ícones */
     transition: fill 0.3s ease;
 }
 
 .social-icons a:hover svg {
     fill: #ffff00;
-    /* Cor amarela no hover */
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
     border-top: 1px solid #333;
-    /* Linha sutil acima do copyright */
     font-size: 0.8em;
     color: #aaa;
 }
 
-.footer-bottom p {
-    margin: 0;
+/* --- ESTILOS PARA O LOGIN --- */
+
+/* Estilo do botão de Login no cabeçalho */
+.login-button {
+    background-color: #ffff00; /* Cor amarela do tema */
+    color: #000; /* Texto preto para contraste */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
+.login-button:hover {
+    background-color: #e6e600; /* Amarelo um pouco mais escuro */
+    transform: scale(1.05);
+}
 
-/* Responsividade para o Footer */
-@media (max-width: 992px) {
-    .footer-logo-area {
-        margin-bottom: 20px;
-        /* Adiciona espaço se o logo ficar acima dos links */
+/* O fundo escuro do Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* A caixa de conteúdo do Modal */
+.modal-content {
+    background-color: #fff;
+    color: #333;
+    margin: 15% auto;
+    padding: 25px 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 380px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slide-down 0.4s ease-out;
+}
+
+/* Animação para o modal aparecer */
+@keyframes slide-down {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
-
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        /* Empilha os blocos verticalmente */
-        align-items: center;
-        /* Centraliza os blocos empilhados */
-        text-align: center;
-    }
-
-    .footer-logo-area,
-    .footer-links-column,
-    .footer-social {
-        flex-basis: auto;
-        /* Reseta a base flex */
-        width: 100%;
-        /* Ocupa toda a largura */
-        max-width: 300px;
-        /* Limita a largura máxima para não ficar muito espalhado */
-        margin-bottom: 30px;
-    }
-
-    .footer-links-column:last-of-type {
-        /* Remove margem do último bloco de links */
-        margin-bottom: 0;
-    }
-
-    .footer-social {
-        margin-bottom: 0;
-    }
-
-    .social-icons {
-        justify-content: center;
-        /* Centraliza os ícones sociais */
-    }
+/* Botão de fechar (X) */
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-@media (max-width: 480px) {
-    .footer-logo-area .logo {
-        font-size: 2em;
-    }
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+}
 
-    .footer-links-column h4,
-    .footer-social h4 {
-        font-size: 1em;
-    }
+/* Estilos do formulário dentro do modal */
+.modal-form {
+    text-align: center;
+}
 
-    .site-footer {
-        font-size: 0.85em;
-    }
+.modal-form h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
 
-    .social-icons a svg {
-        width: 24px;
-        height: 24px;
-    }
+.modal-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.modal-form input[type="text"],
+.modal-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.modal-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #003366; /* Azul escuro do tema */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-form button[type="submit"]:hover {
+    background-color: #0056b3; /* Azul um pouco mais claro */
+}
+
+/* --- ESTILOS ADICIONAIS PARA REGISTRO --- */
+
+/* Alinha os botões de login e registro no cabeçalho */
+.header-actions {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* Estilo para o botão de registro (um pouco diferente para destacar) */
+.register-button {
+    background-color: transparent;
+    color: #ffff00; /* Cor amarela do tema */
+    border: 2px solid #ffff00;
+    border-radius: 5px;
+    padding: 6px 18px; /* um pouco menor que o de login */
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #ffff00;
+    color: #000;
+}
+
+/* Estilo para os links de alternar entre login e registro */
+.form-switcher-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.form-switcher-link a {
+    color: #0056b3;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.form-switcher-link a:hover {
+    text-decoration: underline;
 }
