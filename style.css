@@ -513,3 +513,197 @@ header {
 .form-switcher-link a:hover {
     text-decoration: underline;
 }
+
+/* --- ESTILOS PARA A SEÇÃO DE PRODUTOS EM DESTAQUE --- */
+.destaques-section {
+    padding: 60px 0;
+    background-color: #f8f8f8; /* Fundo levemente diferente para destacar */
+}
+
+.produtos-destaque-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px; /* Espaçamento entre os cards */
+    margin-top: 50px;
+}
+
+.produto-card-destaque {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    width: 280px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.produto-card-destaque:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.produto-imagem-destaque {
+    width: 100%;
+    height: 240px; /* Altura fixa para alinhar os cards */
+    object-fit: contain; /* 'contain' para mostrar a imagem inteira sem cortar */
+    margin-bottom: 20px;
+}
+
+.produto-nome-destaque {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    /* Garante que o nome tenha um espaço mínimo para crescer e alinha os preços */
+    flex-grow: 1; 
+}
+
+.produto-precos-destaque {
+    margin-bottom: 5px;
+}
+
+.produto-preco-antigo {
+    font-size: 0.9em;
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.produto-preco-atual {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #003366; /* Azul do seu tema */
+}
+
+.produto-parcelamento-destaque {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* --- ESTILOS PARA O MODAL DE PRODUTOS --- */
+.modal-produto-container {
+    display: none; 
+    position: fixed; 
+    z-index: 1001; /* Fica acima de tudo, até do modal de login */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-ativo {
+    display: flex;
+}
+
+.modal-produto-content {
+    position: relative;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: slide-down 0.4s ease-out;
+}
+
+.modal-produto-body {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.modal-imagem-produto {
+    flex-basis: 50%;
+    max-width: 50%;
+    height: auto;
+    object-fit: contain;
+}
+
+.modal-texto-produto {
+    flex-basis: 50%;
+}
+
+.modal-produto-close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-produto-close:hover {
+    color: #000;
+}
+
+#modal-nome {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.modal-preco-antigo-detalhe {
+    font-size: 1.1em;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.modal-preco-atual-detalhe {
+    font-size: 2em;
+    font-weight: 900;
+    color: #003366;
+    margin-left: 10px;
+}
+
+.modal-parcelamento-detalhe {
+    font-size: 1em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.modal-botao-comprar {
+    background-color: #ffff00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 25px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.modal-botao-comprar:hover {
+    background-color: #e6e600;
+    transform: scale(1.02);
+}
+
+@media (max-width: 600px) {
+    .modal-produto-body {
+        flex-direction: column;
+        text-align: center;
+    }
+    .modal-imagem-produto, .modal-texto-produto {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+    #modal-nome {
+        font-size: 1.4em;
+    }
+}

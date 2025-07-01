@@ -99,6 +99,20 @@
         </div>
     </section>
 
+    <!-- SEÇÃO DE PRODUTOS EM DESTAQUE (GERADA DINAMICAMENTE) -->
+    <section class="destaques-section">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title-alt">DESTAQUES</h2>
+                <div class="section-title-line"></div>
+            </div>
+            <!-- O contêiner abaixo será preenchido pelo JavaScript com os cards dos produtos -->
+            <div class="produtos-destaque-grid" id="lista-produtos-destaque">
+                <!-- Os cards dos produtos aparecerão aqui -->
+            </div>
+        </div>
+    </section>
+    
     <!-- SEÇÃO DE PRODUTOS COMPLETA -->
     <section class="category-section produtos-section">
         <div class="container">
@@ -177,6 +191,25 @@
 
                 <p class="form-switcher-link">Já tem uma conta? <a href="#" id="switchToLogin">Faça Login</a></p>
             </form>
+        </div>
+    </div>
+    
+    <!-- Modal (Janela Pop-up) para Detalhes do Produto -->
+    <div id="produtoModal" class="modal-produto-container">
+        <div class="modal-produto-content">
+            <span class="modal-produto-close">×</span>
+            <div class="modal-produto-body">
+                <img id="modal-imagem" src="" alt="Imagem do Produto" class="modal-imagem-produto">
+                <div class="modal-texto-produto">
+                    <h2 id="modal-nome">Nome do Produto</h2>
+                    <div class="modal-precos">
+                        <span id="modal-preco-antigo" class="modal-preco-antigo-detalhe"></span>
+                        <span id="modal-preco-atual" class="modal-preco-atual-detalhe"></span>
+                    </div>
+                    <p id="modal-parcelamento" class="modal-parcelamento-detalhe"></p>
+                    <button class="modal-botao-comprar">Adicionar ao Carrinho</button>
+                </div>
+            </div>
         </div>
     </div>
 
