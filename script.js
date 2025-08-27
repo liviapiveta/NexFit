@@ -4,31 +4,22 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // --- LÓGICA GERAL DOS MODAIS ---
-
-// Elementos do DOM para Login
+// (Esta parte continua a mesma)
 const loginBtn = document.getElementById('loginBtn');
 const loginModal = document.getElementById('loginModal');
 const loginForm = document.getElementById('loginForm');
-
-// Elementos do DOM para Registro
 const registerBtn = document.getElementById('registerBtn');
 const registerModal = document.getElementById('registerModal');
 const registerForm = document.getElementById('registerForm');
-
-// Elementos para fechar e alternar
 const closeButtons = document.querySelectorAll('.close-button');
 const switchToRegisterLink = document.getElementById('switchToRegister');
 const switchToLoginLink = document.getElementById('switchToLogin');
 
-// Função para fechar todos os modais
 const closeAllModals = () => {
     if (loginModal) loginModal.style.display = 'none';
     if (registerModal) registerModal.style.display = 'none';
 };
 
-// --- EVENT LISTENERS (OUVINTES DE EVENTOS) ---
-
-// Abrir modais
 if (loginBtn) {
     loginBtn.addEventListener('click', () => {
         closeAllModals();
@@ -41,20 +32,14 @@ if (registerBtn) {
         registerModal.style.display = 'block';
     });
 }
-
-// Fechar modais ao clicar no 'X'
 closeButtons.forEach(button => {
     button.addEventListener('click', closeAllModals);
 });
-
-// Fechar modais ao clicar fora deles
 window.addEventListener('click', (event) => {
     if (event.target === loginModal || event.target === registerModal) {
         closeAllModals();
     }
 });
-
-// Alternar entre formulários
 if (switchToRegisterLink) {
     switchToRegisterLink.addEventListener('click', (e) => {
         e.preventDefault();
@@ -71,133 +56,105 @@ if (switchToLoginLink) {
 }
 
 // --- LÓGICA DE SUBMISSÃO DOS FORMULÁRIOS ---
-
-// Processar formulário de LOGIN
+// (Esta parte continua a mesma)
 if (loginForm) {
     loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
-        const submitButton = loginForm.querySelector('button[type="submit"]');
-        
-        submitButton.disabled = true;
-        submitButton.textContent = 'Entrando...';
-
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-        if (error) {
-            alert('Falha no login: ' + error.message);
-        } else {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) alert('Falha no login: ' + error.message);
+        else {
             alert('Login realizado com sucesso!');
             closeAllModals();
         }
-        
-        submitButton.disabled = false;
-        submitButton.textContent = 'Entrar';
     });
 }
-
-// Processar formulário de REGISTRO
 if (registerForm) {
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const email = document.getElementById('registerEmail').value;
         const password = document.getElementById('registerPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
-        const submitButton = registerForm.querySelector('button[type="submit"]');
-
         if (password !== confirmPassword) {
             alert('As senhas não coincidem!');
             return;
         }
-
-        submitButton.disabled = true;
-        submitButton.textContent = 'Registrando...';
-
-        const { data, error } = await supabase.auth.signUp({ email, password });
-
-        if (error) {
-            alert('Falha no registro: ' + error.message);
-        } else {
-            alert('Registro realizado com sucesso! Se a confirmação de e-mail estiver ativa, verifique sua caixa de entrada.');
+        const { error } = await supabase.auth.signUp({ email, password });
+        if (error) alert('Falha no registro: ' + error.message);
+        else {
+            alert('Registro realizado com sucesso!');
             closeAllModals();
         }
-
-        submitButton.disabled = false;
-        submitButton.textContent = 'Registrar';
     });
 }
 
-// --- LÓGICA PARA RENDERIZAR PRODUTOS E ABRIR MODAL ---
 
-document.addEventListener('DOMContentLoaded', () => {
-    const produtosDestaque = [
-        {
-            nome: "Whey Protein Concentrado Dymatize Elite 100% (907g)",
-            imagemUrl: "https://i.imgur.com/z6E5L93.png",
-            precoAntigo: "299,90",
-            precoAtual: "249,90",
-            parcelamento: "ou 5x de R$ 49,98 sem juros"
-        },
-        {
-            nome: "Luva de Treino Musculação NexFit Pro Grip",
-            imagemUrl: "https://i.imgur.com/XU68EwE.png",
-            precoAntigo: "99,90",
-            precoAtual: "79,90",
-            parcelamento: "ou 2x de R$ 39,95 sem juros"
-        }
-    ];
+// --- LÓGICA PARA CARREGAR E EXIBIR PRODUTOS ---
 
-    const containerDeProdutos = document.getElementById('lista-produtos-destaque');
-    const produtoModal = document.getElementById('produtoModal');
-    const modalCloseBtn = document.querySelector('.modal-produto-close');
-    const modalImagem = document.getElementById('modal-imagem');
-    const modalNome = document.getElementById('modal-nome');
-    const modalPrecoAntigo = document.getElementById('modal-preco-antigo');
-    const modalPrecoAtual = document.getElementById('modal-preco-atual');
-    const modalParcelamento = document.getElementById('modal-parcelamento');
-
-    if (containerDeProdutos) {
-        let htmlParaInserir = '';
-        produtosDestaque.forEach((produto, index) => {
-            const cardHTML = `
-                <div class="produto-card-destaque" data-index="${index}">
-                    <img src="${produto.imagemUrl}" alt="${produto.nome}" class="produto-imagem-destaque">
-                    <h3 class="produto-nome-destaque">${produto.nome}</h3>
-                    <div>
-                        <div class="produto-precos-destaque">
-                            <span class="produto-preco-antigo">R$ ${produto.precoAntigo}</span>
-                            <span class="produto-preco-atual">R$ ${produto.precoAtual}</span>
-                        </div>
-                        <p class="produto-parcelamento-destaque">${produto.parcelamento.split(' ').slice(0, 3).join(' ')}</p>
-                    </div>
-                </div>`;
-            htmlParaInserir += cardHTML;
-        });
-        containerDeProdutos.innerHTML = htmlParaInserir;
-
-        containerDeProdutos.addEventListener('click', (event) => {
-            const cardClicado = event.target.closest('.produto-card-destaque');
-            if (!cardClicado) return;
-
-            const produtoIndex = cardClicado.dataset.index;
-            const produtoSelecionado = produtosDestaque[produtoIndex];
-
-            modalImagem.src = produtoSelecionado.imagemUrl;
-            modalNome.textContent = produtoSelecionado.nome;
-            modalPrecoAntigo.textContent = `R$ ${produtoSelecionado.precoAntigo}`;
-            modalPrecoAtual.textContent = `R$ ${produtoSelecionado.precoAtual}`;
-            modalParcelamento.textContent = produtoSelecionado.parcelamento;
-            produtoModal.classList.add('modal-ativo');
-        });
+// Função que carrega os produtos do JSON e os exibe na página
+async function loadProducts() {
+    // Verifica se estamos na página de produtos procurando por um dos grids
+    if (!document.getElementById('grid-academia')) {
+        return; // Se não encontrar, sai da função (não estamos na página de produtos)
     }
 
-    const fecharModal = () => {
-        if (produtoModal) produtoModal.classList.remove('modal-ativo');
-    };
+    try {
+        const response = await fetch('produtos.json');
+        if (!response.ok) {
+            throw new Error(`Erro ao carregar o arquivo: ${response.statusText}`);
+        }
+        const products = await response.json();
 
-    if (modalCloseBtn) modalCloseBtn.addEventListener('click', fecharModal);
-    if (produtoModal) produtoModal.addEventListener('click', (event) => {
-        if (event.target === produtoModal) fecharModal();
-    });
+        // Mapeamento das categorias e subcategorias para os IDs dos containers no HTML
+        const containers = {
+            academia: document.getElementById('grid-academia'),
+            termicas: document.getElementById('grid-termicas'),
+            acessorios: document.getElementById('grid-acessorios'),
+            equipamentos: document.getElementById('grid-equipamentos'),
+            suplementos: document.getElementById('grid-suplementos')
+        };
+        
+        // Limpa todos os containers antes de adicionar novos produtos
+        Object.values(containers).forEach(container => {
+            if (container) container.innerHTML = '';
+        });
+
+        // Itera sobre cada produto do JSON
+        products.forEach(product => {
+            const productCardHTML = `
+                <a href="${product.link}" class="product-card">
+                    <div>
+                        <img src="${product.imagemUrl}" alt="${product.nome}">
+                        <p class="product-name">${product.nome}</p>
+                    </div>
+                    <p class="product-price">R$${product.preco}</p>
+                </a>`;
+
+            // Adiciona o card do produto no container correto
+            if (product.subcategoria === 'Academia' && containers.academia) {
+                containers.academia.innerHTML += productCardHTML;
+            } else if (product.subcategoria === 'Térmicas' && containers.termicas) {
+                containers.termicas.innerHTML += productCardHTML;
+            } else if (product.categoria === 'Acessórios' && containers.acessorios) {
+                containers.acessorios.innerHTML += productCardHTML;
+            } else if (product.categoria === 'Equipamentos' && containers.equipamentos) {
+                containers.equipamentos.innerHTML += productCardHTML;
+            } else if (product.categoria === 'Suplementos' && containers.suplementos) {
+                containers.suplementos.innerHTML += productCardHTML;
+            }
+        });
+
+    } catch (error) {
+        console.error("Não foi possível carregar os produtos:", error);
+    }
+}
+
+// Adiciona um listener que executa o código quando o HTML da página é totalmente carregado
+document.addEventListener('DOMContentLoaded', () => {
+    // Chama a função para carregar os produtos da página de produtos
+    loadProducts();
+
+    // A lógica antiga para os produtos da página inicial pode ser mantida aqui se necessário,
+    // mas por enquanto, focamos na página de produtos.
 });

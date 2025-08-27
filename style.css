@@ -707,3 +707,86 @@ header {
         font-size: 1.4em;
     }
 }
+
+/* Estilos para a página de produtos */
+
+.produtos-page-section {
+    padding: 60px 0;
+    background-color: #f4f4f4; /* Um cinza bem claro para o fundo */
+}
+
+.section-title-produtos {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5em;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 5px; /* Espaçamento entre as letras */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+    white-space: nowrap; /* Impede que o título quebre em telas menores */
+}
+
+.section-title-produtos::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background-color: #000;
+    margin-left: 20px;
+}
+
+.subsection-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #003366; /* Azul do seu tema */
+    margin-bottom: 30px;
+
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Layout responsivo */
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.product-name {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    flex-grow: 1; /* Ajuda a alinhar os preços se os nomes tiverem tamanhos diferentes */
+}
+
+.product-price {
+    font-size: 1.3em;
+    font-weight: 900;
+    color: #003366; /* Azul do seu tema */
+}
