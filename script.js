@@ -4,7 +4,6 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // --- LÓGICA GERAL DOS MODAIS ---
-// (Esta parte continua a mesma)
 const loginBtn = document.getElementById('loginBtn');
 const loginModal = document.getElementById('loginModal');
 const loginForm = document.getElementById('loginForm');
@@ -56,7 +55,6 @@ if (switchToLoginLink) {
 }
 
 // --- LÓGICA DE SUBMISSÃO DOS FORMULÁRIOS ---
-// (Esta parte continua a mesma)
 if (loginForm) {
     loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -125,7 +123,7 @@ async function loadProducts() {
             const productCardHTML = `
                 <a href="${product.link}" class="product-card">
                     <div>
-                        <img src="${product.imagemUrl}" alt="${product.nome}">
+                        <img src="${product.imagemUrl.replace(/\\/g, '/')}" alt="${product.nome}">
                         <p class="product-name">${product.nome}</p>
                     </div>
                     <p class="product-price">R$${product.preco}</p>
@@ -155,6 +153,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Chama a função para carregar os produtos da página de produtos
     loadProducts();
 
-    // A lógica antiga para os produtos da página inicial pode ser mantida aqui se necessário,
-    // mas por enquanto, focamos na página de produtos.
+    // Adiciona o Carrinho na navegação principal se o elemento existir
+    const mainNavUl = document.querySelector('.main-navigation nav ul');
+    if (mainNavUl && !document.querySelector('.main-navigation nav ul li a[href="carrinho.html"]')) {
+        const carrinhoLi = document.createElement('li');
+        carrinhoLi.innerHTML = '<a href="carrinho.html">Carrinho</a>';
+        mainNavUl.appendChild(carrinhoLi);
+    }
 });
