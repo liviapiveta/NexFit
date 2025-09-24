@@ -39,7 +39,7 @@
         "id": 5,
         "nome": "Blusa Térmica Masculina Branca",
         "preco": "178,99",
-        "imagemUrl": "https://i.imgur.com/1B9Z1nL.png",
+        "imagemUrl": "imagens\\Blusa_T",
         "link": "pagina-produto-5.html",
         "categoria": "Roupas",
         "subcategoria": "Térmicas"

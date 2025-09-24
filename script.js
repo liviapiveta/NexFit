@@ -148,10 +148,30 @@ async function loadProducts() {
     }
 }
 
+// --- Lógica para seleção de tamanhos na página de detalhes do produto ---
+function setupSizeSelection() {
+    const sizeButtons = document.querySelectorAll('.size-button');
+    if (sizeButtons.length > 0) {
+        sizeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove a classe 'active' de todos os botões de tamanho
+                sizeButtons.forEach(btn => btn.classList.remove('active'));
+                // Adiciona a classe 'active' apenas no botão clicado
+                button.classList.add('active');
+                // Opcional: Você pode adicionar aqui uma lógica para armazenar o tamanho selecionado
+                // console.log('Tamanho selecionado:', button.textContent);
+            });
+        });
+    }
+}
+
 // Adiciona um listener que executa o código quando o HTML da página é totalmente carregado
 document.addEventListener('DOMContentLoaded', () => {
     // Chama a função para carregar os produtos da página de produtos
     loadProducts();
+
+    // Chama a função para configurar a seleção de tamanhos
+    setupSizeSelection();
 
     // Adiciona o Carrinho na navegação principal se o elemento existir
     const mainNavUl = document.querySelector('.main-navigation nav ul');
