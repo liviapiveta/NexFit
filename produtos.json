@@ -39,7 +39,7 @@
         "id": 5,
         "nome": "Blusa Térmica Masculina Branca",
         "preco": "178,99",
-        "imagemUrl": "imagens\\Blusa_T",
+        "imagemUrl": "imagens\\Blusa Térmica Masculina Branca.png",
         "link": "pagina-produto-5.html",
         "categoria": "Roupas",
         "subcategoria": "Térmicas"
@@ -48,7 +48,7 @@
         "id": 6,
         "nome": "Conjunto Blusa & Calça Térmica Feminina Vinho",
         "preco": "178,99",
-        "imagemUrl": "https://i.imgur.com/5wO1J8S.png",
+        "imagemUrl": "imagens\\Conjunto Blusa & Calça Térmica Feminina Vinho.png",
         "link": "pagina-produto-6.html",
         "categoria": "Roupas",
         "subcategoria": "Térmicas"
@@ -57,7 +57,7 @@
         "id": 7,
         "nome": "Strap para Musculação Preto",
         "preco": "20,50",
-        "imagemUrl": "https://i.imgur.com/YgD40aJ.png", 
+        "imagemUrl": "imagens\\Strap para Musculação Preto.png", 
         "link": "pagina-produto-7.html",
         "categoria": "Acessórios"
     },
@@ -65,7 +65,7 @@
         "id": 8,
         "nome": "Bolsa para Academia Preta",
         "preco": "349,99",
-        "imagemUrl": "https://i.imgur.com/qFw4f3t.png",
+        "imagemUrl": "imagens\\Bolsa para Academia Preta.png",
         "link": "pagina-produto-8.html",
         "categoria": "Acessórios"
     },
@@ -73,7 +73,7 @@
         "id": 9,
         "nome": "Garrafa Shakeira Azul Escuro",
         "preco": "39,90",
-        "imagemUrl": "https://i.imgur.com/D1gA8kX.png",
+        "imagemUrl": "imagens\\Garrafa Shakeira Azul Escuro.png",
         "link": "pagina-produto-9.html",
         "categoria": "Acessórios"
     },
@@ -81,7 +81,7 @@
         "id": 10,
         "nome": "Peso de Pulso Preto 2kg",
         "preco": "50,50",
-        "imagemUrl": "https://i.imgur.com/c4tE1T0.png",
+        "imagemUrl": "imagens\\Peso de Pulso Preto 2kg.png",
         "link": "pagina-produto-10.html",
         "categoria": "Equipamentos"
     },
@@ -89,7 +89,7 @@
         "id": 11,
         "nome": "Caneleira Peso Preto 1kg",
         "preco": "45,60",
-        "imagemUrl": "https://i.imgur.com/s6nL8bB.png",
+        "imagemUrl": "imagens\\Caneleira Peso Preto 1kg.png",
         "link": "pagina-produto-11.html",
         "categoria": "Equipamentos"
     },
@@ -97,7 +97,7 @@
         "id": 12,
         "nome": "Relógio Esportivo para Treino",
         "preco": "856,00",
-        "imagemUrl": "https://i.imgur.com/vL7Yx06.png",
+        "imagemUrl": "imagens\\Relógio Esportivo para Treino.png",
         "link": "pagina-produto-12.html",
         "categoria": "Equipamentos"
     }
