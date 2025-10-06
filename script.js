@@ -92,9 +92,8 @@ if (registerForm) {
 
 // Função que carrega os produtos do JSON e os exibe na página
 async function loadProducts() {
-    // Verifica se estamos na página de produtos procurando por um dos grids
     if (!document.getElementById('grid-academia')) {
-        return; // Se não encontrar, sai da função (não estamos na página de produtos)
+        return;
     }
 
     try {
@@ -104,7 +103,6 @@ async function loadProducts() {
         }
         const products = await response.json();
 
-        // Mapeamento das categorias e subcategorias para os IDs dos containers no HTML
         const containers = {
             academia: document.getElementById('grid-academia'),
             termicas: document.getElementById('grid-termicas'),
@@ -113,23 +111,22 @@ async function loadProducts() {
             suplementos: document.getElementById('grid-suplementos')
         };
         
-        // Limpa todos os containers antes de adicionar novos produtos
         Object.values(containers).forEach(container => {
             if (container) container.innerHTML = '';
         });
 
-        // Itera sobre cada produto do JSON
         products.forEach(product => {
+            const imageUrl = product.cores ? product.cores[0].imagemUrl.replace(/\\/g, '/') : (product.imagemUrl ? product.imagemUrl.replace(/\\/g, '/') : '');
+
             const productCardHTML = `
                 <a href="${product.link}" class="product-card">
                     <div>
-                        <img src="${product.imagemUrl.replace(/\\/g, '/')}" alt="${product.nome}">
+                        <img src="${imageUrl}" alt="${product.nome}">
                         <p class="product-name">${product.nome}</p>
                     </div>
                     <p class="product-price">R$${product.preco}</p>
                 </a>`;
 
-            // Adiciona o card do produto no container correto
             if (product.subcategoria === 'Academia' && containers.academia) {
                 containers.academia.innerHTML += productCardHTML;
             } else if (product.subcategoria === 'Térmicas' && containers.termicas) {
@@ -154,30 +151,96 @@ function setupSizeSelection() {
     if (sizeButtons.length > 0) {
         sizeButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove a classe 'active' de todos os botões de tamanho
                 sizeButtons.forEach(btn => btn.classList.remove('active'));
-                // Adiciona a classe 'active' apenas no botão clicado
                 button.classList.add('active');
-                // Opcional: Você pode adicionar aqui uma lógica para armazenar o tamanho selecionado
-                // console.log('Tamanho selecionado:', button.textContent);
             });
         });
     }
 }
 
+
+// --- LÓGICA PARA CARREGAR DETALHES DO PRODUTO (NOVA FUNÇÃO) ---
+async function loadProductDetails(productId) {
+    const productImage = document.getElementById('product-image');
+    const productName = document.querySelector('.product-detail-name');
+    const productPrice = document.querySelector('.product-detail-price');
+    const colorContainer = document.getElementById('color-options-container');
+
+    if (!productImage || !productName || !productPrice || !colorContainer) {
+        return; 
+    }
+
+    try {
+        const response = await fetch('produtos.json');
+        const products = await response.json();
+        const product = products.find(p => p.id === productId);
+
+        if (!product) {
+            console.error('Produto não encontrado!');
+            return;
+        }
+
+        productName.textContent = product.nome;
+        productPrice.textContent = `R$${product.preco}`;
+        colorContainer.innerHTML = '';
+
+        if (product.cores && product.cores.length > 0) {
+            const firstColor = product.cores[0];
+            productImage.src = firstColor.imagemUrl;
+            productImage.alt = `${product.nome} - ${firstColor.nome}`;
+            document.title = `${product.nome} - NexFit`; // Atualiza o título da página
+        }
+        
+        product.cores.forEach((cor, index) => {
+            const colorButton = document.createElement('button');
+            colorButton.className = 'color-button';
+            colorButton.textContent = cor.nome;
+            
+            if (index === 0) {
+                colorButton.classList.add('active');
+            }
+
+            colorButton.addEventListener('click', () => {
+                productImage.src = cor.imagemUrl;
+                productImage.alt = `${product.nome} - ${cor.nome}`;
+
+                document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('active'));
+                colorButton.classList.add('active');
+            });
+
+            colorContainer.appendChild(colorButton);
+        });
+
+    } catch (error) {
+        console.error("Não foi possível carregar os detalhes do produto:", error);
+    }
+}
+
+
 // Adiciona um listener que executa o código quando o HTML da página é totalmente carregado
 document.addEventListener('DOMContentLoaded', () => {
-    // Chama a função para carregar os produtos da página de produtos
     loadProducts();
-
-    // Chama a função para configurar a seleção de tamanhos
     setupSizeSelection();
 
-    // Adiciona o Carrinho na navegação principal se o elemento existir
     const mainNavUl = document.querySelector('.main-navigation nav ul');
     if (mainNavUl && !document.querySelector('.main-navigation nav ul li a[href="carrinho.html"]')) {
         const carrinhoLi = document.createElement('li');
         carrinhoLi.innerHTML = '<a href="carrinho.html">Carrinho</a>';
         mainNavUl.appendChild(carrinhoLi);
     }
+
+    // --- LÓGICA ATUALIZADA PARA CARREGAR DETALHES EM TODAS AS PÁGINAS DE PRODUTO ---
+    const path = window.location.pathname;
+    if (path.includes('pagina-produto-1.html')) { loadProductDetails(1); }
+    else if (path.includes('pagina-produto-2.html')) { loadProductDetails(2); }
+    else if (path.includes('pagina-produto-3.html')) { loadProductDetails(3); }
+    else if (path.includes('pagina-produto-4.html')) { loadProductDetails(4); }
+    else if (path.includes('pagina-produto-5.html')) { loadProductDetails(5); }
+    else if (path.includes('pagina-produto-6.html')) { loadProductDetails(6); }
+    else if (path.includes('pagina-produto-7.html')) { loadProductDetails(7); }
+    else if (path.includes('pagina-produto-8.html')) { loadProductDetails(8); }
+    else if (path.includes('pagina-produto-9.html')) { loadProductDetails(9); }
+    else if (path.includes('pagina-produto-10.html')) { loadProductDetails(10); }
+    else if (path.includes('pagina-produto-11.html')) { loadProductDetails(11); }
+    else if (path.includes('pagina-produto-12.html')) { loadProductDetails(12); }
 });

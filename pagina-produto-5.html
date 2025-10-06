@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blusa Térmica Masculina Branca - NexFit</title>
+    <title>Blusa Térmica Feminina - NexFit</title>
     
     <!-- FONTES DO GOOGLE -->
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Pacifico&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
@@ -44,15 +44,17 @@
     <main class="product-detail-page">
         <div class="container">
             <div class="breadcrumb">
-                <a href="produtos.html">Produtos</a> > <a href="#">Térmica</a>
+                <a href="produtos.html">Produtos</a> > <a href="#">Térmicas</a>
             </div>
 
             <div class="product-detail-grid">
                 <div class="product-detail-image">
-                    <img src="imagens/Blusa Térmica Masculina Branca.png" alt="Blusa Térmica Masculina Branca">
+                    <!-- ID adicionado para o JavaScript encontrar e alterar a imagem -->
+                    <img src="imagens/Blusa Térmica Masculina Branca.png" alt="Blusa Térmica Masculina" id="product-image">
                 </div>
                 <div class="product-detail-info">
-                    <h1 class="product-detail-name">Blusa Térmica Masculina Branca</h1>
+                    <!-- O nome e o preço serão preenchidos dinamicamente pelo JavaScript -->
+                    <h1 class="product-detail-name">Blusa Térmica Masculina</h1>
                     <p class="product-detail-price">R$178,99</p>
 
                     <div class="product-options">
@@ -70,20 +72,21 @@
 
                         <div class="option-group">
                             <span class="option-label">Cor</span>
-                            <div class="color-options">
-                                <button class="color-button active">Branca</button>
-                                <!-- Adicione mais cores conforme necessário -->
+                            <!-- ID adicionado. O JavaScript irá criar e inserir os botões de cor aqui. -->
+                            <div class="color-options" id="color-options-container">
+                                <!-- Os botões de cor serão inseridos aqui pelo JavaScript -->
                             </div>
                         </div>
                     </div>
 
-                    <button class="add-to-cart-button">ADICIONAR AO CARRINHO</button>
+                    <button class="add-to-cart-button" id="add-to-cart-btn">ADICIONAR AO CARRINHO</button>
 
                     <div class="product-description">
                         <h3>Descrição</h3>
                         <p>Leve, confortável e com um toque moderno, esta camiseta masculina é ideal para o dia a dia e para atividades esportivas. Produzida com tecido de alta qualidade, garante respirabilidade e liberdade de movimentos, mantendo você estiloso em qualquer ocasião.</p>
                         <ul>
-                            <li>Cor: Branca</li>
+                            <!-- Texto da cor atualizado para refletir a seleção -->
+                            <li>Cor: Variável (selecionável)</li>
                             <li>Modelagem: Regular Fit</li>
                             <li>Tecido: Poliéster com toque macio e secagem rápida</li>
                             <li>Diferenciais: Conforto, leveza e versatilidade</li>

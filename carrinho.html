@@ -1,12 +1,87 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexFit</title>
+    <title>Meu Carrinho - NexFit</title>
+    
+    <!-- FONTES DO GOOGLE -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Pacifico&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- LINK PARA A FOLHA DE ESTILO EXTERNA -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-area">
+                    <img src="imagens/Logo 02 NexFit.png" alt="Logo NexFit">
+                    <p class="tagline">Fortaleça seu corpo. Transfira sua mente</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button id="registerBtn" class="register-button">Registrar</button>
+                    <button id="loginBtn" class="login-button">Login</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="main-navigation">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <main class="cart-page-section">
+        <div class="container">
+            <h1 class="cart-title">Meu Carrinho</h1>
+            
+            <!-- Os itens do carrinho serão inseridos aqui pelo JavaScript -->
+            <div id="cart-items-container">
+                <!-- Exemplo de como fica um item (será gerado pelo JS):
+                <div class="cart-item">
+                    <img src="imagens/Camiseta_Masculina_Azul_Marinho.png" alt="Nome do Produto" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <p class="cart-item-name">Camiseta Masculina</p>
+                        <p class="cart-item-options">Cor: Azul Marinho | Tamanho: M</p>
+                        <p class="cart-item-price">R$159,12</p>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <p>Qtd: 1</p>
+                    </div>
+                    <button class="remove-from-cart-btn">Remover</button>
+                </div>
+                -->
+            </div>
+
+            <!-- O resumo do carrinho será inserido aqui pelo JavaScript -->
+            <div id="cart-summary">
+                <!-- Exemplo do resumo (será gerado pelo JS):
+                <div class="cart-total">
+                    <p>Subtotal: <strong>R$159,12</strong></p>
+                    <button class="checkout-button">Finalizar Compra</button>
+                </div>
+                -->
+            </div>
+        </div>
+    </main>
+
+    <!-- ... (Seus modais e rodapé continuam aqui) ... -->
+    <footer class="site-footer">
+        <!-- ... (código do seu rodapé) ... -->
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
 </body>
 </html>
