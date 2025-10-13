@@ -41,7 +41,7 @@
         "preco": "178,99",
         "link": "pagina-produto-4.html",
         "categoria": "Roupas",
-        "subcategoria": "Térmicas",
+        "subcategoria": "Termicas",
         "cores": [
             { "nome": "Cinza Escuro", "imagemUrl": "imagens/Blusa_Térmica_Feminina_Cinza_Escuro.png" },
             { "nome": "Cinza Alternativo", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
@@ -53,7 +53,7 @@
         "preco": "178,99",
         "link": "pagina-produto-5.html",
         "categoria": "Roupas",
-        "subcategoria": "Térmicas",
+        "subcategoria": "Termicas",
         "cores": [
             { "nome": "Branca", "imagemUrl": "imagens/Blusa Térmica Masculina Branca.png" },
             { "nome": "Cinza Escuro", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
@@ -65,7 +65,7 @@
         "preco": "178,99",
         "link": "pagina-produto-6.html",
         "categoria": "Roupas",
-        "subcategoria": "Térmicas",
+        "subcategoria": "Termicas",
         "cores": [
             { "nome": "Vinho", "imagemUrl": "imagens/Conjunto Blusa & Calça Térmica Feminina Vinho.png" },
             { "nome": "Cinza Escuro", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
@@ -76,7 +76,7 @@
         "nome": "Strap para Musculação",
         "preco": "20,50",
         "link": "pagina-produto-7.html",
-        "categoria": "Acessórios",
+        "categoria": "Acessorios",
         "cores": [
             { "nome": "Preto", "imagemUrl": "imagens/Strap para Musculação Preto.png" },
             { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
@@ -87,7 +87,7 @@
         "nome": "Bolsa para Academia",
         "preco": "349,99",
         "link": "pagina-produto-8.html",
-        "categoria": "Acessórios",
+        "categoria": "Acessorios",
         "cores": [
             { "nome": "Preta", "imagemUrl": "imagens/Bolsa para Academia Preta.png" },
             { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
@@ -98,7 +98,7 @@
         "nome": "Garrafa Shakeira",
         "preco": "39,90",
         "link": "pagina-produto-9.html",
-        "categoria": "Acessórios",
+        "categoria": "Acessorios",
         "cores": [
             { "nome": "Azul Escuro", "imagemUrl": "imagens/Garrafa Shakeira Azul Escuro.png" },
             { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }

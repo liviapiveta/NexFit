@@ -972,7 +972,7 @@ header {
 .cart-page-section {
     padding: 60px 0;
     background-color: #f8f8f8;
-    min-height: 60vh;
+    min-height: 60vh; /* Garante que a página tenha uma altura mínima */
 }
 
 .cart-title {
@@ -1007,6 +1007,7 @@ header {
     height: 100px;
     object-fit: contain;
     border: 1px solid #f0f0f0;
+    border-radius: 4px;
 }
 
 .cart-item-details {
@@ -1032,10 +1033,6 @@ header {
     margin: 0;
 }
 
-.cart-item-quantity {
-    font-weight: bold;
-}
-
 .remove-from-cart-btn {
     background-color: #fbebeb;
     color: #c53030;
@@ -1049,6 +1046,7 @@ header {
 
 .remove-from-cart-btn:hover {
     background-color: #f8a5a5;
+    color: #9b2c2c;
 }
 
 .cart-empty-message {
