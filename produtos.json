@@ -136,5 +136,38 @@
             { "nome": "Preto", "imagemUrl": "imagens/Relógio Esportivo para Treino.png" },
             { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
         ]
+    },
+    {
+        "id": 13,
+        "nome": "Suplemento 1",
+        "preco": "100,00",
+        "link": "pagina-produto-13.html",
+        "categoria": "Suplementos",
+        "cores": [
+            { "nome": "Preto", "imagemUrl": "imagens/Relógio Esportivo para Treino.png" },
+            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 14,
+        "nome": "Suplemento 2",
+        "preco": "100,00",
+        "link": "pagina-produto-14.html",
+        "categoria": "Suplementos",
+        "cores": [
+            { "nome": "Preto", "imagemUrl": "imagens/Relógio Esportivo para Treino.png" },
+            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },    
+    {
+        "id": 15,
+        "nome": "Suplemento 3",
+        "preco": "100,00",
+        "link": "pagina-produto-15.html",
+        "categoria": "Suplementos",
+        "cores": [
+            { "nome": "Preto", "imagemUrl": "imagens/Relógio Esportivo para Treino.png" },
+            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
     }
 ]

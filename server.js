@@ -1,31 +1,48 @@
-// 1. Importar o Express
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
+const connectDB = require('./db'); // Importa nossa função de conexão
 
-// 2. Criar uma instância do Express
+// Conecta ao banco de dados ANTES de iniciar o servidor
+connectDB();
+
 const app = express();
-
-// 3. Definir a porta do servidor
-// Render vai fornecer a porta através de process.env.PORT
-// Para rodar localmente, usaremos a porta 3000
 const PORT = process.env.PORT || 3000;
 
-// 4. Servir os arquivos estáticos (HTML, CSS, JS, Imagens)
-// Esta linha diz ao servidor para entregar qualquer arquivo que esteja na mesma pasta que ele.
+// --- DEFINIÇÃO DO MODELO DE PRODUTO (SCHEMA) ---
+// Isso define como os dados dos produtos serão estruturados no MongoDB
+const productSchema = new mongoose.Schema({
+    id: { type: Number, required: true, unique: true },
+    nome: { type: String, required: true },
+    preco: { type: String, required: true },
+    categoria: { type: String, required: true },
+    // E outros campos que você tenha...
+});
+const Product = mongoose.model('Product', productSchema);
+
+
+// --- ROTAS DA APLICAÇÃO ---
+
+// Servir os arquivos estáticos (HTML, CSS, JS, etc.)
 app.use(express.static(path.join(__dirname)));
 
-// 5. Rota de teste da API (para verificar se o servidor Node está funcionando)
-app.get('/api/test', (req, res) => {
-    res.json({ message: 'Olá! O servidor NexFit está no ar!' });
-});
-
-// 6. Rota principal para servir o home.html
-// Se alguém acessar a raiz do site, entregue o home.html
+// Rota principal para servir o home.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'home.html'));
 });
 
-// 7. Iniciar o servidor e fazê-lo "ouvir" na porta definida
+// Rota de API para buscar todos os produtos do banco de dados
+app.get('/api/products', async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao buscar produtos', error: error.message });
+    }
+});
+
+
+// Iniciar o servidor
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
