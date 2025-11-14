@@ -1,0 +1,140 @@
+[
+    {
+        "id": 1,
+        "nome": "Camiseta Masculina",
+        "preco": "159,12",
+        "link": "pagina-produto-1.html",
+        "categoria": "Roupas",
+        "subcategoria": "Academia",
+        "cores": [
+            { "nome": "Azul Marinho", "imagemUrl": "imagens/Camiseta_Masculina_Azul_Marinho.png" },
+            { "nome": "Cinza Escuro", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 2,
+        "nome": "Camiseta Feminina Oversized",
+        "preco": "198,90",
+        "link": "pagina-produto-2.html",
+        "categoria": "Roupas",
+        "subcategoria": "Academia",
+        "cores": [
+            { "nome": "Verde Musgo", "imagemUrl": "imagens/Camiseta_Feminina_Oversized_Verde_Musgo.png" },
+            { "nome": "Cinza Escuro", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 3,
+        "nome": "Camiseta Masculina",
+        "preco": "159,12",
+        "link": "pagina-produto-3.html",
+        "categoria": "Roupas",
+        "subcategoria": "Academia",
+        "cores": [
+            { "nome": "Cinza Escuro", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" },
+            { "nome": "Azul Marinho", "imagemUrl": "imagens/Camiseta_Masculina_Azul_Marinho.png" }
+        ]
+    },
+    {
+        "id": 4,
+        "nome": "Blusa Térmica Feminina",
+        "preco": "178,99",
+        "link": "pagina-produto-4.html",
+        "categoria": "Roupas",
+        "subcategoria": "Termicas",
+        "cores": [
+            { "nome": "Cinza Escuro", "imagemUrl": "imagens/Blusa_Térmica_Feminina_Cinza_Escuro.png" },
+            { "nome": "Cinza Alternativo", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 5,
+        "nome": "Blusa Térmica Masculina",
+        "preco": "178,99",
+        "link": "pagina-produto-5.html",
+        "categoria": "Roupas",
+        "subcategoria": "Termicas",
+        "cores": [
+            { "nome": "Branca", "imagemUrl": "imagens/Blusa Térmica Masculina Branca.png" },
+            { "nome": "Cinza Escuro", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 6,
+        "nome": "Conjunto Térmico Feminino",
+        "preco": "178,99",
+        "link": "pagina-produto-6.html",
+        "categoria": "Roupas",
+        "subcategoria": "Termicas",
+        "cores": [
+            { "nome": "Vinho", "imagemUrl": "imagens/Conjunto Blusa & Calça Térmica Feminina Vinho.png" },
+            { "nome": "Cinza Escuro", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 7,
+        "nome": "Strap para Musculação",
+        "preco": "20,50",
+        "link": "pagina-produto-7.html",
+        "categoria": "Acessorios",
+        "cores": [
+            { "nome": "Preto", "imagemUrl": "imagens/Strap para Musculação Preto.png" },
+            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 8,
+        "nome": "Bolsa para Academia",
+        "preco": "349,99",
+        "link": "pagina-produto-8.html",
+        "categoria": "Acessorios",
+        "cores": [
+            { "nome": "Preta", "imagemUrl": "imagens/Bolsa para Academia Preta.png" },
+            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 9,
+        "nome": "Garrafa Shakeira",
+        "preco": "39,90",
+        "link": "pagina-produto-9.html",
+        "categoria": "Acessorios",
+        "cores": [
+            { "nome": "Azul Escuro", "imagemUrl": "imagens/Garrafa Shakeira Azul Escuro.png" },
+            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 10,
+        "nome": "Peso de Pulso Preto",
+        "preco": "50,50",
+        "link": "pagina-produto-10.html",
+        "categoria": "Equipamentos",
+        "cores": [
+            { "nome": "2Kg", "imagemUrl": "imagens/Peso de Pulso Preto 2kg.png" },
+            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 11,
+        "nome": "Caneleira Peso Preto",
+        "preco": "45,60",
+        "link": "pagina-produto-11.html",
+        "categoria": "Equipamentos",
+        "cores": [
+            { "nome": "1Kg", "imagemUrl": "imagens/Caneleira Peso Preto 1kg.png" },
+            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    },
+    {
+        "id": 12,
+        "nome": "Relógio Esportivo para Treino",
+        "preco": "856,00",
+        "link": "pagina-produto-12.html",
+        "categoria": "Equipamentos",
+        "cores": [
+            { "nome": "Preto", "imagemUrl": "imagens/Relógio Esportivo para Treino.png" },
+            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+        ]
+    }
+]

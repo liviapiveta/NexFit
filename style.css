@@ -1,0 +1,1096 @@
+/* Basic Reset & Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.banner img {
+    width: 100%;
+}
+
+.logo-area img {
+    width: 20%;
+    height: auto;
+    display: block;
+}
+
+/* Header Styles (Black Bar with Logo and Button) */
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area .tagline {
+    font-size: 0.8em;
+    display: block;
+    color: #ccc;
+    margin-top: 2px;
+}
+
+/* Main Navigation Bar Styles (Yellow Bar) */
+.main-navigation {
+    background-color: #ffff00;
+    padding: 12px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-navigation nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.main-navigation nav ul li {
+    margin: 0 20px;
+}
+
+.main-navigation nav ul li a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.main-navigation nav ul li a:hover {
+    color: #333;
+}
+
+/* About Us Section Styles */
+.about-us {
+    padding-top: 60px;
+    background-color: #fff;
+}
+
+.about-us p {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 1em;
+    line-height: 1.7;
+}
+
+.about-us p strong {
+    color: #0056b3;
+    font-weight: 700;
+}
+
+.about-us .about-highlight {
+    font-weight: bold;
+    color: #0056b3;
+    font-size: 1.1em;
+    margin-top: 30px;
+}
+
+/* Our Space Section Styles */
+.our-space {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.section-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.section-title, .section-title-alt {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    padding-right: 20px;
+    white-space: nowrap;
+}
+
+.section-title-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #000;
+}
+
+.space-block {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.space-image {
+    flex: 1 1 50%;
+    max-width: 50%;
+}
+
+.space-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.space-text {
+    flex: 1 1 50%;
+    color: #333;
+    font-size: 0.95em;
+    line-height: 1.7;
+}
+
+.space-text p {
+    margin-bottom: 15px;
+}
+
+.space-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Category Section Styles (Produtos, Esportes) */
+.category-section {
+    padding: 50px 0;
+    background-color: #fff;
+}
+
+.category-items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.category-item {
+    text-align: center;
+    flex-basis: 130px;
+    max-width: 160px;
+}
+
+.category-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.category-image-wrapper {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px auto;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.category-item a:hover .category-image-wrapper {
+    border-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.produtos-section .category-image-wrapper {
+    background-color: #003366;
+}
+
+.category-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.esportes-section .category-image-wrapper img {
+    object-fit: contain;
+}
+
+.category-item p {
+    font-size: 1em;
+    font-weight: bold;
+    color: #003366;
+    margin: 0;
+}
+
+.category-item .discount-text {
+    background-color: #ffff00;
+    color: #000;
+    padding: 3px 8px;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.see-more-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.see-more-link a {
+    color: #0056b3;
+    text-decoration: underline;
+    font-size: 0.95em;
+    font-weight: bold;
+}
+
+.see-more-link a:hover {
+    text-decoration: none;
+}
+
+/* Footer Styles */
+.site-footer {
+    background-color: #000;
+    color: #ccc;
+    padding: 50px 0 20px;
+    font-size: 0.9em;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-logo-area {
+    flex: 1 1 250px;
+}
+
+.footer-logo-area img{
+    width: 70%;
+}
+
+.footer-logo-area .tagline {
+    font-size: 0.85em;
+    color: #fff;
+    margin-top: 0;
+    line-height: 1.4;
+}
+
+.footer-links-column {
+    flex: 1 1 150px;
+}
+
+.footer-links-column h4 {
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.footer-links-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links-column ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links-column ul li a:hover {
+    color: #ffff00;
+    text-decoration: underline;
+}
+
+.footer-social h4 {
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+    transition: fill 0.3s ease;
+}
+
+.social-icons a:hover svg {
+    fill: #ffff00;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+/* --- ESTILOS PARA O LOGIN --- */
+
+/* Estilo do botão de Login no cabeçalho */
+.login-button {
+    background-color: #ffff00; /* Cor amarela do tema */
+    color: #000; /* Texto preto para contraste */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #e6e600; /* Amarelo um pouco mais escuro */
+    transform: scale(1.05);
+}
+
+/* O fundo escuro do Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* A caixa de conteúdo do Modal */
+.modal-content {
+    background-color: #fff;
+    color: #333;
+    margin: 15% auto;
+    padding: 25px 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 380px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slide-down 0.4s ease-out;
+}
+
+/* Animação para o modal aparecer */
+@keyframes slide-down {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Botão de fechar (X) */
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+}
+
+/* Estilos do formulário dentro do modal */
+.modal-form {
+    text-align: center;
+}
+
+.modal-form h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.modal-form input[type="text"],
+.modal-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.modal-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #003366; /* Azul escuro do tema */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-form button[type="submit"]:hover {
+    background-color: #0056b3; /* Azul um pouco mais claro */
+}
+
+/* --- ESTILOS ADICIONAIS PARA REGISTRO --- */
+
+/* Alinha os botões de login e registro no cabeçalho */
+.header-actions {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* Estilo para o botão de registro (um pouco diferente para destacar) */
+.register-button {
+    background-color: transparent;
+    color: #ffff00; /* Cor amarela do tema */
+    border: 2px solid #ffff00;
+    border-radius: 5px;
+    padding: 6px 18px; /* um pouco menor que o de login */
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #ffff00;
+    color: #000;
+}
+
+/* Estilo para os links de alternar entre login e registro */
+.form-switcher-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.form-switcher-link a {
+    color: #0056b3;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.form-switcher-link a:hover {
+    text-decoration: underline;
+}
+
+/* --- ESTILOS PARA A SEÇÃO DE PRODUTOS EM DESTAQUE --- */
+.destaques-section {
+    padding: 60px 0;
+    background-color: #f8f8f8; /* Fundo levemente diferente para destacar */
+}
+
+.produtos-destaque-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px; /* Espaçamento entre os cards */
+    margin-top: 50px;
+}
+
+.produto-card-destaque {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    width: 280px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.produto-card-destaque:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.produto-imagem-destaque {
+    width: 100%;
+    height: 240px; /* Altura fixa para alinhar os cards */
+    object-fit: contain; /* 'contain' para mostrar a imagem inteira sem cortar */
+    margin-bottom: 20px;
+}
+
+.produto-nome-destaque {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    /* Garante que o nome tenha um espaço mínimo para crescer e alinha os preços */
+    flex-grow: 1; 
+}
+
+.produto-precos-destaque {
+    margin-bottom: 5px;
+}
+
+.produto-preco-antigo {
+    font-size: 0.9em;
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.produto-preco-atual {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #003366; /* Azul do seu tema */
+}
+
+.produto-parcelamento-destaque {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* --- ESTILOS PARA O MODAL DE PRODUTOS --- */
+.modal-produto-container {
+    display: none; 
+    position: fixed; 
+    z-index: 1001; /* Fica acima de tudo, até do modal de login */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-ativo {
+    display: flex;
+}
+
+.modal-produto-content {
+    position: relative;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: slide-down 0.4s ease-out;
+}
+
+.modal-produto-body {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.modal-imagem-produto {
+    flex-basis: 50%;
+    max-width: 50%;
+    height: auto;
+    object-fit: contain;
+}
+
+.modal-texto-produto {
+    flex-basis: 50%;
+}
+
+.modal-produto-close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-produto-close:hover {
+    color: #000;
+}
+
+#modal-nome {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.modal-preco-antigo-detalhe {
+    font-size: 1.1em;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.modal-preco-atual-detalhe {
+    font-size: 2em;
+    font-weight: 900;
+    color: #003366;
+    margin-left: 10px;
+}
+
+.modal-parcelamento-detalhe {
+    font-size: 1em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.modal-botao-comprar {
+    background-color: #ffff00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 25px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.modal-botao-comprar:hover {
+    background-color: #e6e600;
+    transform: scale(1.02);
+}
+
+@media (max-width: 600px) {
+    .modal-produto-body {
+        flex-direction: column;
+        text-align: center;
+    }
+    .modal-imagem-produto, .modal-texto-produto {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+    #modal-nome {
+        font-size: 1.4em;
+    }
+}
+
+/* Estilos para a página de produtos */
+
+.produtos-page-section {
+    padding: 60px 0;
+    background-color: #f4f4f4; /* Um cinza bem claro para o fundo */
+}
+
+.section-title-produtos {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5em;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 5px; /* Espaçamento entre as letras */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+    white-space: nowrap; /* Impede que o título quebre em telas menores */
+}
+
+.section-title-produtos::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background-color: #000;
+    margin-left: 20px;
+}
+
+.subsection-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #003366; /* Azul do seu tema */
+    margin-bottom: 30px;
+
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Layout responsivo */
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.product-name {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    flex-grow: 1; /* Ajuda a alinhar os preços se os nomes tiverem tamanhos diferentes */
+}
+
+.product-price {
+    font-size: 1.3em;
+    font-weight: 900;
+    color: #003366; /* Azul do seu tema */
+}
+
+/* --- ESTILOS PARA A PÁGINA DE DETALHES DO PRODUTO (pagina-produto-X.html) --- */
+
+.product-detail-page {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.breadcrumb {
+    margin-bottom: 30px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.breadcrumb a {
+    color: #003366;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.product-detail-grid {
+    display: flex;
+    gap: 40px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.product-detail-image {
+    flex: 1;
+    max-width: 40%;
+    text-align: center;
+}
+
+.product-detail-image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #eee;
+    padding: 10px;
+}
+
+.product-detail-info {
+    flex: 1;
+    max-width: 60%;
+}
+
+.product-detail-name {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.product-detail-price {
+    font-size: 2.5em;
+    font-weight: 900;
+    color: #003366;
+    margin-bottom: 30px;
+}
+
+.product-options {
+    margin-bottom: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.option-group {
+    margin-bottom: 20px;
+}
+
+.option-label {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.size-options, .color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.size-button, .color-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+
+.size-button.active, .color-button.active {
+    background-color: #003366;
+    color: #fff;
+    border-color: #003366;
+}
+
+.size-button:hover:not(.active), .color-button:hover:not(.active) {
+    background-color: #e0e0e0;
+    border-color: #999;
+}
+
+.add-to-cart-button {
+    background-color: #ffff00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    padding: 18px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #e6e600;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-description {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+.product-description h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.product-description p {
+    margin-bottom: 15px;
+    color: #555;
+    line-height: 1.7;
+}
+
+.product-description ul {
+    list-style: disc;
+    margin-left: 20px;
+    color: #555;
+}
+
+.product-description ul li {
+    margin-bottom: 8px;
+}
+
+/* Responsividade para a página de detalhes do produto */
+@media (max-width: 768px) {
+    .product-detail-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .product-detail-image, .product-detail-info {
+        max-width: 100%;
+    }
+    .product-detail-name {
+        font-size: 1.8em;
+    }
+    .product-detail-price {
+        font-size: 2em;
+    }
+}
+
+/* --- ESTILOS PARA A PÁGINA DO CARRINHO (carrinho.html) --- */
+
+.cart-page-section {
+    padding: 60px 0;
+    background-color: #f8f8f8;
+    min-height: 60vh; /* Garante que a página tenha uma altura mínima */
+}
+
+.cart-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#cart-items-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.cart-item-options {
+    font-size: 0.9em;
+    color: #666;
+    margin: 5px 0;
+}
+
+.cart-item-price {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #003366;
+    margin: 0;
+}
+
+.remove-from-cart-btn {
+    background-color: #fbebeb;
+    color: #c53030;
+    border: 1px solid #f9b3b3;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.remove-from-cart-btn:hover {
+    background-color: #f8a5a5;
+    color: #9b2c2c;
+}
+
+.cart-empty-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+    padding: 40px 0;
+}
+
+#cart-summary {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cart-total {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 350px;
+    text-align: right;
+}
+
+.cart-total p {
+    font-size: 1.5em;
+    margin: 0 0 20px 0;
+}
+
+.checkout-button {
+    background-color: #ffff00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+    background-color: #e6e600;
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - NexFit</title>
+    
+    <!-- FONTES DO GOOGLE -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Pacifico&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- LINK PARA A FOLHA DE ESTILO PRINCIPAL -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- LINK PARA A FOLHA DE ESTILO ESPECÍFICA DA PÁGINA DE CONTATO -->
+    <link rel="stylesheet" href="style-contato.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-area">
+                    <img src="imagens/Logo 02 NexFit.png" alt="Logo NexFit">
+                    <p class="tagline">Fortaleça seu corpo. Transfira sua mente</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button id="registerBtn" class="register-button">Registrar</button>
+                    <button id="loginBtn" class="login-button">Login</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="main-navigation">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <main class="contact-page-section">
+        <div class="container">
+            <div class="section-title-container">
+                <h2 class="section-title-alt">FALE CONOSCO</h2>
+                <div class="section-title-line"></div>
+                <p class="section-subtitle">Tem alguma dúvida, sugestão ou feedback? Adoraríamos ouvir você!</p>
+            </div>
+
+            <!-- SEÇÃO DE INFORMAÇÕES DE CONTATO -->
+            <div class="contact-info-cards">
+                <div class="info-card">
+                    <img src="imagens/whatsapp-icon.png" alt="WhatsApp Icon" class="info-card-icon">
+                    <h3>WhatsApp</h3>
+                    <p>Para um atendimento rápido e direto.</p>
+                    <a href="https://wa.me/5544999729063" target="_blank">(44) 99972-9063</a>
+                </div>
+                <div class="info-card">
+                    <img src="imagens/email-icon.png" alt="Email Icon" class="info-card-icon">
+                    <h3>E-mail</h3>
+                    <p>Envie suas dúvidas para nosso suporte.</p>
+                    <a href="mailto:contato@nexfit.com.br">contato@nexfit.com.br</a>
+                </div>
+                <div class="info-card">
+                    <img src="imagens/location-icon.png" alt="Location Icon" class="info-card-icon">
+                    <h3>Nosso Endereço</h3>
+                    <p>Av. Brasil, 1234 - Centro<br>Maringá - PR, 87013-000</p>
+                    <a href="#mapa" class="scroll-to-map">Ver no mapa</a>
+                </div>
+            </div>
+
+            <!-- FORMULÁRIO DE CONTATO -->
+            <div class="contact-form-container">
+                <h3>Ou nos envie uma mensagem</h3>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Seu Nome</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Seu E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Sua Mensagem</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Enviar Mensagem</button>
+                </form>
+            </div>
+
+            <!-- SEÇÃO DO MAPA -->
+            <div id="mapa" class="map-container">
+                <h3>Nossa Localização</h3>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.840411393617!2d-51.93855368554761!3d-23.42999498474836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e81993498871ab%3A0x15981351174989e1!2sAv.%20Brasil%2C%20Maring%C3%A1%20-%20PR!5e0!3m2!1spt-BR!2sbr!4v1672945512345!5m2!1spt-BR!2sbr" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-area">
+                    <img src="imagens/Logo 02 NexFit.png" alt="Logo NexFit">
+                    <p class="tagline">Fortaleça seu corpo. Transfira sua mente.</p>
+                </div>
+                <div class="footer-links-column">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="produtos.html">Produtos</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-column">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="mailto:contato@nexfit.com.br">contato@nexfit.com.br</a></li>
+                        <li><a href="#">(44) 99972-9063</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Siga-nos</h4>
+                    <div class="social-icons">
+                         <!-- Ícones de redes sociais -->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NexFit. Todos os direitos reservados. | <a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+            </div>
+        </div>
+    </footer>   
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título atualizado para o nome genérico do produto -->
+    <title>Garrafa Shakeira - NexFit</title>
+    
+    <!-- FONTES DO GOOGLE -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Pacifico&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- LINK PARA A FOLHA DE ESTILO EXTERNA -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-area">
+                    <img src="imagens/Logo 02 NexFit.png" alt="Logo NexFit">
+                    <p class="tagline">Fortaleça seu corpo. Transfira sua mente</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button id="registerBtn" class="register-button">Registrar</button>
+                    <button id="loginBtn" class="login-button">Login</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="main-navigation">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <main class="product-detail-page">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="produtos.html">Produtos</a> > <a href="#">Acessórios</a>
+            </div>
+
+            <div class="product-detail-grid">
+                <div class="product-detail-image">
+                    <!-- ID adicionado para o JavaScript e imagem inicial correta -->
+                    <img src="imagens/Garrafa Shakeira Azul Escuro.png" alt="Garrafa Shakeira" id="product-image">
+                </div>
+                <div class="product-detail-info">
+                    <!-- Nome e preço serão carregados pelo JS, mas mantemos como placeholder -->
+                    <h1 class="product-detail-name">Garrafa Shakeira</h1>
+                    <p class="product-detail-price">R$39,90</p>
+
+                    <div class="product-options">
+                        <div class="option-group">
+                            <span class="option-label">Cor</span>
+                            <!-- ID adicionado e conteúdo esvaziado para o JS preencher -->
+                            <div class="color-options" id="color-options-container">
+                                <!-- Os botões de cor serão inseridos aqui pelo JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="add-to-cart-button" id="add-to-cart-btn">ADICIONAR AO CARRINHO</button>
+
+                    <div class="product-description">
+                        <h3>Descrição</h3>
+                        <!-- Descrição ajustada para ser mais genérica para um acessório -->
+                        <p>Essencial para melhorar a pegada e a segurança durante treinos intensos, este strap de musculação é feito com material de alta durabilidade. Aumente sua performance em levantamentos e puxe mais carga com confiança e conforto.</p>
+                        <ul>
+                            <li>Cor: Variável (selecionável)</li>
+                            <li>Material: Algodão resistente com costura reforçada</li>
+                            <li>Diferenciais: Aderência, segurança e durabilidade</li>
+                            <li>Indicado para: Musculação, levantamento de peso e crossfit</li>
+                        </ul>
+                        <p>Ideal para exercícios como levantamento terra, remadas e puxadas, protegendo seus pulsos e potencializando seus resultados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL DE LOGIN (JANELA POP-UP) -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <form id="loginForm" class="modal-form">
+                <h2>Login NexFit</h2>
+                <label for="loginEmail">E-mail</label>
+                <input type="email" id="loginEmail" name="email" required>
+                
+                <label for="loginPassword">Senha</label>
+                <input type="password" id="loginPassword" name="senha" required>
+                
+                <button type="submit">Entrar</button>
+
+                <p class="form-switcher-link">Não tem uma conta? <a href="#" id="switchToRegister">Registre-se</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOVO MODAL DE REGISTRO -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <form id="registerForm" class="modal-form">
+                <h2>Crie sua Conta</h2>
+                <label for="registerEmail">E-mail</label>
+                <input type="email" id="registerEmail" name="email" required>
+                
+                <label for="registerPassword">Senha (mínimo 6 caracteres)</label>
+                <input type="password" id="registerPassword" name="senha" required>
+
+                <label for="confirmPassword">Confirme a Senha</label>
+                <input type="password" id="confirmPassword" name="confirm_senha" required>
+                
+                <button type="submit">Registrar</button>
+
+                <p class="form-switcher-link">Já tem uma conta? <a href="#" id="switchToLogin">Faça Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+ 
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-area">
+                    <img src="imagens/Logo 02 NexFit.png" alt="Logo NexFit">
+                    <p class="tagline">Fortaleça seu corpo. Transfira sua mente.</p>
+                </div>
+
+                <div class="footer-links-column">
+                    <h4>Páginas</h4>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="produtos.html">Produtos</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="carrinho.html">Carrinho</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-column">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="#">Roupas</a></li>
+                        <li><a href="#">Acessórios</a></li>
+                        <li><a href="#">Equipamentos</a></li>
+                        <li><a href="#">Suplementos</a></li>
+                        <li><a href="#">Descontos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-column">
+                    <h4>Esportes</h4>
+                    <ul>
+                        <li><a href="#">Voleibol</a></li>
+                        <li><a href="#">Basketbol</a></li>
+                        <li><a href="#">Futebol</a></li>
+                        <li><a href="#">Polo Aquático</a></li>
+                        <li><a href="#">Golf</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-social">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0,0 1,16.2 22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.2,5.2 0,0 1,7.8 2M7.6,4A3.6,3.6 0,0 0,4 7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0,0 0,20 16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0,0 1,18.5 6.75A1.25,1.25 0,0 1,17.25 8A1.25,1.25 0,0 1,16 6.75A1.25,1.25 0,0 1,17.25 5.5M12,7A5,5 0,0 1,17 12A5,5 0,0 1,12 17A5,5 0,0 1,7 12A5,5 0,0 1,12 7M12,9A3,3 0,0 0,9 12A3,3 0,0 0,12 15A3,3 0,0 0,15 12A3,3 0,0 0,12 9Z" /></svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.81C10.44 7.31 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" /></svg>
+                        </a>
+                        <a href="https://x.com" target="_blank" aria-label="X/Twitter">
+                            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NexFit. Todos os direitos reservados. | <a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
