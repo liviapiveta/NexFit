@@ -1,10 +1,4 @@
-// --- CONFIGURAÇÃO DO SUPABASE ---
-const SUPABASE_URL = 'https://gxpgawhxpfglpmlbunkr.supabase.co'; 
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4cGdhd2h4cGZnbHBtbGJ1bmtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3ODY0NjksImV4cCI6MjA2NjM2MjQ2OX0.9bPknN7h4O3tpzRgJQuq7u_pcPJfmOhrlHWqSCskAoE';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-// --- LÓGICA GERAL DOS MODAIS (Sem alterações) ---
-// ... (seu código de modais de login/registro existente permanece aqui) ...
+// --- LÓGICA GERAL DOS MODAIS ---
 const loginBtn = document.getElementById('loginBtn');
 const loginModal = document.getElementById('loginModal');
 const loginForm = document.getElementById('loginForm');
@@ -14,6 +8,9 @@ const registerForm = document.getElementById('registerForm');
 const closeButtons = document.querySelectorAll('.close-button');
 const switchToRegisterLink = document.getElementById('switchToRegister');
 const switchToLoginLink = document.getElementById('switchToLogin');
+
+// URL do nosso backend
+const API_URL = 'http://localhost:3000/api';
 
 const closeAllModals = () => {
     if (loginModal) loginModal.style.display = 'none';
@@ -54,44 +51,82 @@ if (switchToLoginLink) {
         loginModal.style.display = 'block';
     });
 }
-if (loginForm) {
-    loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) alert('Falha no login: ' + error.message);
-        else {
-            alert('Login realizado com sucesso!');
-            closeAllModals();
-        }
-    });
-}
+
+// =========================================================================
+// --- LÓGICA DE AUTENTICAÇÃO COM O NOSSO BACKEND ---
+// =========================================================================
+
 if (registerForm) {
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const email = document.getElementById('registerEmail').value;
         const password = document.getElementById('registerPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+        
         if (password !== confirmPassword) {
             alert('As senhas não coincidem!');
             return;
         }
-        const { error } = await supabase.auth.signUp({ email, password });
-        if (error) alert('Falha no registro: ' + error.message);
-        else {
-            alert('Registro realizado com sucesso!');
-            closeAllModals();
+
+        try {
+            const response = await fetch(`${API_URL}/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) { 
+                alert(data.message || 'Registro realizado com sucesso!');
+                closeAllModals();
+            } else {
+                // Lança um erro para ser pego pelo bloco catch
+                throw new Error(data.message || 'Erro desconhecido no servidor.');
+            }
+        } catch (error) {
+            console.error('Erro na requisição de registro:', error);
+            alert('Falha no registro: ' + error.message);
         }
     });
 }
 
-// --- LÓGICA DO CARRINHO DE COMPRAS ---
+if (loginForm) {
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
 
-/**
- * Adiciona um produto ao carrinho no localStorage.
- * @param {object} product - O objeto do produto vindo do JSON.
- */
+        try {
+            const response = await fetch(`${API_URL}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message || 'Login realizado com sucesso!');
+                closeAllModals();
+            } else {
+                // Lança um erro para ser pego pelo bloco catch
+                throw new Error(data.message || 'Falha no login.');
+            }
+        } catch (error) {
+            console.error('Erro na requisição de login:', error);
+            alert('Falha no login: ' + error.message);
+        }
+    });
+}
+
+
+// --- LÓGICA DO CARRINHO DE COMPRAS (sem alterações) ---
+
 function addToCart(product) {
     const sizeEl = document.querySelector('.size-button.active');
     const colorEl = document.querySelector('.color-button.active');
@@ -101,10 +136,8 @@ function addToCart(product) {
         nome: product.nome,
         preco: product.preco,
         imagemUrl: document.getElementById('product-image').src,
-        // Define 'tamanho' como null se não houver botões de tamanho na página
         tamanho: sizeEl ? sizeEl.textContent : null,
         cor: colorEl ? colorEl.textContent : 'Única',
-        // Cria um ID único para cada item no carrinho para facilitar a remoção
         cartItemId: `item-${Date.now()}`
     };
 
@@ -113,34 +146,24 @@ function addToCart(product) {
     localStorage.setItem('nexfitCart', JSON.stringify(cart));
     
     alert(`${itemToAdd.nome} foi adicionado ao carrinho!`);
-    // Opcional: redirecionar para a página do carrinho
-    // window.location.href = 'carrinho.html';
 }
 
-/**
- * Remove um item do carrinho no localStorage.
- * @param {string} cartItemId - O ID único do item a ser removido.
- */
 function removeFromCart(cartItemId) {
     let cart = JSON.parse(localStorage.getItem('nexfitCart')) || [];
-    // Filtra o array, mantendo todos os itens exceto aquele que corresponde ao ID
     cart = cart.filter(item => item.cartItemId !== cartItemId);
     localStorage.setItem('nexfitCart', JSON.stringify(cart));
-    // Re-renderiza o carrinho para mostrar a remoção
     displayCart();
 }
 
-/**
- * Exibe os itens do carrinho e o resumo na página carrinho.html.
- */
 function displayCart() {
     const cartContainer = document.getElementById('cart-items-container');
     const summaryContainer = document.getElementById('cart-summary');
+    if (!cartContainer) return;
+    
     const cart = JSON.parse(localStorage.getItem('nexfitCart')) || [];
 
-    // Limpa o conteúdo anterior
     cartContainer.innerHTML = '';
-    summaryContainer.innerHTML = '';
+    if (summaryContainer) summaryContainer.innerHTML = '';
 
     if (cart.length === 0) {
         cartContainer.innerHTML = '<p class="cart-empty-message">Seu carrinho está vazio.</p>';
@@ -150,13 +173,11 @@ function displayCart() {
     let subtotal = 0;
 
     cart.forEach(item => {
-        // Constrói a string de opções (tamanho e cor)
         let options = `Cor: ${item.cor}`;
         if (item.tamanho) {
             options += ` | Tamanho: ${item.tamanho}`;
         }
         
-        // Cria o HTML para cada item do carrinho
         const itemHTML = `
             <div class="cart-item">
                 <img src="${item.imagemUrl}" alt="${item.nome}" class="cart-item-image">
@@ -165,29 +186,27 @@ function displayCart() {
                     <p class="cart-item-options">${options}</p>
                     <p class="cart-item-price">R$${item.preco}</p>
                 </div>
-                <!-- O data-item-id armazena o ID único para o botão de remoção -->
                 <button class="remove-from-cart-btn" data-item-id="${item.cartItemId}">Remover</button>
             </div>
         `;
         cartContainer.innerHTML += itemHTML;
         
-        // Calcula o subtotal
         const price = parseFloat(item.preco.replace(',', '.'));
         if (!isNaN(price)) {
             subtotal += price;
         }
     });
 
-    // Cria o HTML para o resumo do pedido
-    const summaryHTML = `
-        <div class="cart-total">
-            <p>Subtotal: <strong>R$${subtotal.toFixed(2).replace('.', ',')}</strong></p>
-            <button class="checkout-button">Finalizar Compra</button>
-        </div>
-    `;
-    summaryContainer.innerHTML = summaryHTML;
+    if (summaryContainer) {
+        const summaryHTML = `
+            <div class="cart-total">
+                <p>Subtotal: <strong>R$${subtotal.toFixed(2).replace('.', ',')}</strong></p>
+                <button class="checkout-button">Finalizar Compra</button>
+            </div>
+        `;
+        summaryContainer.innerHTML = summaryHTML;
+    }
 
-    // Adiciona o evento de clique para todos os botões "Remover"
     document.querySelectorAll('.remove-from-cart-btn').forEach(button => {
         button.addEventListener('click', (event) => {
             const cartItemId = event.target.dataset.itemId;
@@ -196,12 +215,8 @@ function displayCart() {
     });
 }
 
+// --- LÓGICA PARA CARREGAR PRODUTOS (mantida como está, usando produtos.json) ---
 
-// --- LÓGICA PARA CARREGAR PRODUTOS ---
-
-/**
- * Carrega os cards de produto na página produtos.html.
- */
 async function loadProducts() {
     if (!document.getElementById('grid-academia')) return;
 
@@ -218,7 +233,6 @@ async function loadProducts() {
         };
         
         products.forEach(product => {
-            // Pega a primeira imagem disponível para o card
             const imageUrl = product.cores && product.cores.length > 0 ? product.cores[0].imagemUrl : 'imagens/placeholder.png';
 
             const productCardHTML = `
@@ -241,10 +255,6 @@ async function loadProducts() {
     }
 }
 
-/**
- * Carrega os detalhes de um produto específico na sua respectiva página.
- * @param {number} productId - O ID do produto a ser carregado.
- */
 async function loadProductDetails(productId) {
     const productImage = document.getElementById('product-image');
     const colorContainer = document.getElementById('color-options-container');
@@ -259,22 +269,18 @@ async function loadProductDetails(productId) {
 
         if (!product) return;
 
-        // Limpa os botões de cor existentes
         colorContainer.innerHTML = '';
         
-        // Preenche os botões de cor/variação e adiciona eventos
         if (product.cores && product.cores.length > 0) {
             product.cores.forEach((cor, index) => {
                 const colorButton = document.createElement('button');
                 colorButton.className = 'color-button';
                 colorButton.textContent = cor.nome;
                 
-                // Ativa o primeiro botão por padrão
                 if (index === 0) {
                     colorButton.classList.add('active');
                 }
 
-                // Adiciona evento para trocar a imagem ao clicar
                 colorButton.addEventListener('click', () => {
                     productImage.src = cor.imagemUrl;
                     document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('active'));
@@ -285,7 +291,6 @@ async function loadProductDetails(productId) {
             });
         }
         
-        // Adiciona o evento de clique ao botão de adicionar ao carrinho
         addToCartButton.addEventListener('click', () => addToCart(product));
 
     } catch (error) {
@@ -293,9 +298,6 @@ async function loadProductDetails(productId) {
     }
 }
 
-/**
- * Configura a seleção de botões de tamanho.
- */
 function setupSizeSelection() {
     const sizeButtons = document.querySelectorAll('.size-button');
     sizeButtons.forEach(button => {
@@ -310,15 +312,12 @@ function setupSizeSelection() {
 document.addEventListener('DOMContentLoaded', () => {
     const path = window.location.pathname.split('/').pop();
 
-    // Lógica para a página de produtos
     if (path === 'produtos.html') {
         loadProducts();
     }
-    // Lógica para a página do carrinho
     else if (path === 'carrinho.html') {
         displayCart();
     }
-    // Lógica para as páginas de detalhe de produto
     else if (path.startsWith('pagina-produto-')) {
         const productId = parseInt(path.match(/\d+/)[0]);
         if (!isNaN(productId)) {
@@ -327,7 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Adiciona o link do carrinho à navegação se ele não existir
     const mainNavUl = document.querySelector('.main-navigation nav ul');
     if (mainNavUl && !mainNavUl.querySelector('a[href="carrinho.html"]')) {
         const carrinhoLi = document.createElement('li');

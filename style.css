@@ -453,6 +453,47 @@ header {
     font-size: 1em;
 }
 
+/* Estilos do formulário dentro do modal */
+.modal-form {
+    text-align: center;
+}
+
+.modal-form h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.modal-form input[type="text"],
+.modal-form input[type="email"], /* <-- ADICIONE ESTA LINHA */
+.modal-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.modal-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #003366; /* Azul escuro do tema */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 .modal-form button[type="submit"] {
     width: 100%;
     padding: 12px;
