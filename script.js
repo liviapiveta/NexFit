@@ -10,7 +10,7 @@ const switchToRegisterLink = document.getElementById('switchToRegister');
 const switchToLoginLink = document.getElementById('switchToLogin');
 
 // URL do nosso backend
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://nex-fit.vercel.app/';
 
 const closeAllModals = () => {
     if (loginModal) loginModal.style.display = 'none';
@@ -332,4 +332,5 @@ document.addEventListener('DOMContentLoaded', () => {
         carrinhoLi.innerHTML = '<a href="carrinho.html">Carrinho</a>';
         mainNavUl.appendChild(carrinhoLi);
     }
+
 });
