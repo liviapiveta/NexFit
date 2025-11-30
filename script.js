@@ -10,7 +10,7 @@ const switchToRegisterLink = document.getElementById('switchToRegister');
 const switchToLoginLink = document.getElementById('switchToLogin');
 
 // URL do nosso backend
-const API_URL = 'nex-fit.vercel.app/';
+const API_URL = 'https://nex-fit.vercel.app/';
 
 const closeAllModals = () => {
     if (loginModal) loginModal.style.display = 'none';
@@ -334,4 +334,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
 
