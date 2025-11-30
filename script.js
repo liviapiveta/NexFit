@@ -20,7 +20,7 @@ const profileEmailSpan = document.getElementById('profileEmail');
 const closeProfileModal = document.getElementById('closeProfileModal');
 
 // URL do nosso backend
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://nex-fit.vercel.app/';
 
 // --- FUNÇÃO PARA VERIFICAR SE O USUÁRIO ESTÁ LOGADO ---
 function checkLoginState() {
@@ -441,4 +441,5 @@ document.addEventListener('DOMContentLoaded', () => {
         carrinhoLi.innerHTML = '<a href="carrinho.html">Carrinho</a>';
         mainNavUl.appendChild(carrinhoLi);
     }
+
 });
