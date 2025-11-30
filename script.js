@@ -1,4 +1,4 @@
-// --- LÓGICA GERAL DOS MODAIS ---
+// --- LÓGICA GERAL DOS MODAIS E TEMA ---
 const loginBtn = document.getElementById('loginBtn');
 const loginModal = document.getElementById('loginModal');
 const loginForm = document.getElementById('loginForm');
@@ -9,51 +9,133 @@ const closeButtons = document.querySelectorAll('.close-button');
 const switchToRegisterLink = document.getElementById('switchToRegister');
 const switchToLoginLink = document.getElementById('switchToLogin');
 
-// URL do nosso backend
-const API_URL = 'https://nex-fit.vercel.app/';
+// Elementos do Usuário Logado
+const authButtonsContainer = document.getElementById('auth-buttons-container');
+const userLoggedContainer = document.getElementById('user-logged-container');
+const userDropdown = document.getElementById('userDropdown');
+const btnLogout = document.getElementById('btnLogout');
+const btnProfile = document.getElementById('btnProfile');
+const profileModal = document.getElementById('profileModal');
+const profileEmailSpan = document.getElementById('profileEmail');
+const closeProfileModal = document.getElementById('closeProfileModal');
 
+// URL do nosso backend
+const API_URL = 'http://localhost:3000/api';
+
+// --- FUNÇÃO PARA VERIFICAR SE O USUÁRIO ESTÁ LOGADO ---
+function checkLoginState() {
+    const user = JSON.parse(localStorage.getItem('nexfitUser'));
+
+    if (user) {
+        // Se tem usuário salvo, esconde botões de login e mostra o avatar
+        if(authButtonsContainer) authButtonsContainer.style.display = 'none';
+        if(userLoggedContainer) userLoggedContainer.style.display = 'flex';
+    } else {
+        // Se não tem, mostra botões de login e esconde o avatar
+        if(authButtonsContainer) authButtonsContainer.style.display = 'flex';
+        if(userLoggedContainer) userLoggedContainer.style.display = 'none';
+    }
+}
+
+// --- LÓGICA DO MENU DROPDOWN ---
+if (userLoggedContainer) {
+    userLoggedContainer.addEventListener('click', (e) => {
+        // Evita que o clique feche o menu imediatamente
+        e.stopPropagation(); 
+        userDropdown.classList.toggle('show');
+    });
+}
+
+// Fechar o dropdown se clicar fora dele
+window.addEventListener('click', () => {
+    if (userDropdown && userDropdown.classList.contains('show')) {
+        userDropdown.classList.remove('show');
+    }
+});
+
+// --- LÓGICA DE LOGOUT ---
+if (btnLogout) {
+    btnLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Remove o usuário do armazenamento
+        localStorage.removeItem('nexfitUser');
+        alert('Você saiu da sua conta.');
+        // Atualiza a tela
+        checkLoginState();
+        // Recarrega a página para limpar estados
+        window.location.reload();
+    });
+}
+
+// --- LÓGICA DO MODAL DE PERFIL ---
+if (btnProfile) {
+    btnProfile.addEventListener('click', (e) => {
+        e.preventDefault();
+        const user = JSON.parse(localStorage.getItem('nexfitUser'));
+        if (user) {
+            profileEmailSpan.textContent = user.email;
+            profileModal.style.display = 'block';
+        }
+    });
+}
+
+if (closeProfileModal) {
+    closeProfileModal.addEventListener('click', () => {
+        profileModal.style.display = 'none';
+    });
+}
+
+// Fecha modais ao clicar fora
+window.addEventListener('click', (event) => {
+    if (event.target === loginModal || event.target === registerModal || event.target === profileModal) {
+        closeAllModals();
+        if(profileModal) profileModal.style.display = 'none';
+    }
+});
+
+// --- FUNÇÕES AUXILIARES ---
 const closeAllModals = () => {
     if (loginModal) loginModal.style.display = 'none';
     if (registerModal) registerModal.style.display = 'none';
 };
 
-if (loginBtn) {
-    loginBtn.addEventListener('click', () => {
-        closeAllModals();
-        loginModal.style.display = 'block';
-    });
-}
-if (registerBtn) {
-    registerBtn.addEventListener('click', () => {
-        closeAllModals();
-        registerModal.style.display = 'block';
-    });
-}
+// Eventos de abrir modais de login/registro
+if (loginBtn) loginBtn.addEventListener('click', () => { closeAllModals(); loginModal.style.display = 'block'; });
+if (registerBtn) registerBtn.addEventListener('click', () => { closeAllModals(); registerModal.style.display = 'block'; });
+
 closeButtons.forEach(button => {
     button.addEventListener('click', closeAllModals);
 });
-window.addEventListener('click', (event) => {
-    if (event.target === loginModal || event.target === registerModal) {
-        closeAllModals();
-    }
-});
-if (switchToRegisterLink) {
-    switchToRegisterLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        closeAllModals();
-        registerModal.style.display = 'block';
-    });
+
+if (switchToRegisterLink) switchToRegisterLink.addEventListener('click', (e) => { e.preventDefault(); closeAllModals(); registerModal.style.display = 'block'; });
+if (switchToLoginLink) switchToLoginLink.addEventListener('click', (e) => { e.preventDefault(); closeAllModals(); loginModal.style.display = 'block'; });
+
+
+// --- LÓGICA DO TEMA ESCURO ---
+const themeToggleBtn = document.getElementById('themeToggle');
+const body = document.body;
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme === 'dark') {
+    body.classList.add('dark-mode');
+    if(themeToggleBtn) themeToggleBtn.textContent = '☀️';
 }
-if (switchToLoginLink) {
-    switchToLoginLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        closeAllModals();
-        loginModal.style.display = 'block';
+
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            themeToggleBtn.textContent = '☀️';
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeToggleBtn.textContent = '🌙';
+        }
     });
 }
 
 // =========================================================================
-// --- LÓGICA DE AUTENTICAÇÃO COM O NOSSO BACKEND ---
+// --- LÓGICA DE LOGIN E REGISTRO ATUALIZADA ---
 // =========================================================================
 
 if (registerForm) {
@@ -71,9 +153,7 @@ if (registerForm) {
         try {
             const response = await fetch(`${API_URL}/register`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
             });
 
@@ -83,7 +163,6 @@ if (registerForm) {
                 alert(data.message || 'Registro realizado com sucesso!');
                 closeAllModals();
             } else {
-                // Lança um erro para ser pego pelo bloco catch
                 throw new Error(data.message || 'Erro desconhecido no servidor.');
             }
         } catch (error) {
@@ -102,9 +181,7 @@ if (loginForm) {
         try {
             const response = await fetch(`${API_URL}/login`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
             });
 
@@ -112,9 +189,14 @@ if (loginForm) {
 
             if (response.ok) {
                 alert(data.message || 'Login realizado com sucesso!');
+                
+                // SALVA O USUÁRIO NO NAVEGADOR
+                localStorage.setItem('nexfitUser', JSON.stringify(data.user));
+                
                 closeAllModals();
+                // ATUALIZA O CABEÇALHO IMEDIATAMENTE
+                checkLoginState();
             } else {
-                // Lança um erro para ser pego pelo bloco catch
                 throw new Error(data.message || 'Falha no login.');
             }
         } catch (error) {
@@ -124,9 +206,7 @@ if (loginForm) {
     });
 }
 
-
-// --- LÓGICA DO CARRINHO DE COMPRAS (sem alterações) ---
-
+// --- LÓGICA DO CARRINHO E PRODUTOS (IGUAL AO SEU) ---
 function addToCart(product) {
     const sizeEl = document.querySelector('.size-button.active');
     const colorEl = document.querySelector('.color-button.active');
@@ -215,15 +295,18 @@ function displayCart() {
     });
 }
 
-// --- LÓGICA PARA CARREGAR PRODUTOS (mantida como está, usando produtos.json) ---
-
+// --- LÓGICA PARA CARREGAR PRODUTOS (DO BANCO DE DADOS) ---
 async function loadProducts() {
-    if (!document.getElementById('grid-academia')) return;
+    // Verifica se existe pelo menos um grid na tela antes de tentar carregar
+    if (!document.getElementById('grid-academia') && !document.getElementById('grid-acessorios')) return;
 
     try {
-        const response = await fetch('produtos.json');
+        // Busca os produtos da sua API (Banco de Dados)
+        const response = await fetch(`${API_URL}/products`);
+        if (!response.ok) throw new Error('Falha ao buscar produtos');
         const products = await response.json();
         
+        // Mapeamento dos locais onde os produtos devem entrar no HTML
         const containers = {
             academia: document.getElementById('grid-academia'),
             termicas: document.getElementById('grid-termicas'),
@@ -233,25 +316,48 @@ async function loadProducts() {
         };
         
         products.forEach(product => {
-            const imageUrl = product.cores && product.cores.length > 0 ? product.cores[0].imagemUrl : 'imagens/placeholder.png';
+            // Lógica Inteligente de Imagem:
+            // 1. Se tiver URL direta (adicionada no admin), usa ela.
+            // 2. Se não, tenta pegar do sistema antigo de cores.
+            // 3. Se não tiver nada, coloca uma imagem padrão.
+            let imageUrl = 'imagens/placeholder.png';
+            
+            if (product.imagemUrl && product.imagemUrl.trim() !== '') {
+                imageUrl = product.imagemUrl;
+            } else if (product.cores && product.cores.length > 0) {
+                imageUrl = product.cores[0].imagemUrl;
+            }
+
+            const link = `pagina-produto-${product.id}.html`;
 
             const productCardHTML = `
-                <a href="${product.link}" class="product-card">
+                <a href="${link}" class="product-card">
                     <div>
-                        <img src="${imageUrl}" alt="${product.nome}">
+                        <img src="${imageUrl}" alt="${product.nome}" onerror="this.src='imagens/placeholder.png'">
                         <p class="product-name">${product.nome}</p>
                     </div>
                     <p class="product-price">R$${product.preco}</p>
                 </a>`;
 
-            const targetContainerKey = product.subcategoria ? product.subcategoria.toLowerCase() : product.categoria.toLowerCase();
-            const targetContainer = containers[targetContainerKey];
+            // Lógica para descobrir em qual DIV o produto deve entrar
+            // Se tiver subcategoria (ex: Academia), usa ela. Se não, usa a categoria (ex: Acessorios).
+            // Remove acentos e coloca em minúsculo para bater com os IDs do HTML.
+            let categoriaChave = '';
+            
+            if (product.subcategoria) {
+                categoriaChave = product.subcategoria.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            } else if (product.categoria) {
+                categoriaChave = product.categoria.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            }
+
+            const targetContainer = containers[categoriaChave];
+            
             if (targetContainer) {
                 targetContainer.innerHTML += productCardHTML;
             }
         });
     } catch (error) {
-        console.error("Não foi possível carregar os produtos:", error);
+        console.error("Erro ao carregar produtos:", error);
     }
 }
 
@@ -310,6 +416,9 @@ function setupSizeSelection() {
 
 // --- INICIALIZAÇÃO QUANDO A PÁGINA CARREGA ---
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. VERIFICA O LOGIN ASSIM QUE A PÁGINA ABRE
+    checkLoginState();
+
     const path = window.location.pathname.split('/').pop();
 
     if (path === 'produtos.html') {
@@ -332,7 +441,4 @@ document.addEventListener('DOMContentLoaded', () => {
         carrinhoLi.innerHTML = '<a href="carrinho.html">Carrinho</a>';
         mainNavUl.appendChild(carrinhoLi);
     }
-
 });
-
-

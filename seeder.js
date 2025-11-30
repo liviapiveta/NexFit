@@ -1,77 +1,52 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
 const path = require('path');
-require('dotenv').config(); // Carrega as variáveis do .env
+require('dotenv').config();
 
-// --- Importar o Modelo de Produto ---
-// Precisamos recriar o schema aqui para que o script saiba como salvar os dados
+// --- SCHEMA COMPLETO (IDÊNTICO AO SERVER.JS) ---
 const productSchema = new mongoose.Schema({
     id: { type: Number, required: true, unique: true },
     nome: { type: String, required: true },
     preco: { type: String, required: true },
     categoria: { type: String, required: true },
-    // Adicione outros campos se você os tiver no seu schema do server.js
+    subcategoria: { type: String, required: false },
+    imagemUrl: { type: String, required: false },
+    cores: { type: Array, required: false }
 });
 const Product = mongoose.model('Product', productSchema);
 
-
-// --- Conectar ao Banco de Dados ---
+// --- CONEXÃO ---
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGODB_URI);
-        console.log('MongoDB Conectado para o Seeder...');
+        console.log('MongoDB Conectado...');
     } catch (error) {
-        console.error(`Erro na conexão do Seeder: ${error.message}`);
+        console.error(`Erro: ${error.message}`);
         process.exit(1);
     }
 };
 
-
-// --- Ler o arquivo JSON ---
+// --- LER ARQUIVO JSON ---
 const products = JSON.parse(
     fs.readFileSync(path.join(__dirname, 'produtos.json'), 'utf-8')
 );
 
-
-// --- Função para Importar os Dados ---
+// --- IMPORTAR DADOS ---
 const importData = async () => {
     try {
-        // Limpa a coleção de produtos antes de importar, para evitar duplicatas
-        await Product.deleteMany(); 
-        
-        await Product.insertMany(products);
-
-        console.log('✅ Dados importados com sucesso!');
+        await Product.deleteMany(); // Apaga o antigo (que estava incompleto)
+        await Product.insertMany(products); // Salva o novo (completo)
+        console.log('✅ Produtos atualizados com sucesso (Subcategorias e Cores incluídas)!');
         process.exit();
     } catch (error) {
-        console.error(`❌ Erro ao importar dados: ${error.message}`);
+        console.error(`❌ Erro: ${error.message}`);
         process.exit(1);
     }
 };
 
-
-// --- Função para Deletar os Dados ---
-const destroyData = async () => {
-    try {
-        await Product.deleteMany();
-        console.log('✅ Dados destruídos com sucesso!');
-        process.exit();
-    } catch (error) {
-        console.error(`❌ Erro ao destruir dados: ${error.message}`);
-        process.exit(1);
-    }
-};
-
-
-// --- Lógica para Executar o Script via Terminal ---
-const runScript = async () => {
+const run = async () => {
     await connectDB();
-
-    if (process.argv[2] === '-d') { // Se o comando for "node seeder.js -d"
-        await destroyData();
-    } else { // Para qualquer outro caso
-        await importData();
-    }
+    await importData();
 };
 
-runScript();
+run();

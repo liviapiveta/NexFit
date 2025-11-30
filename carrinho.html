@@ -20,11 +20,33 @@
                     <p class="tagline">Fortaleça seu corpo. Transfira sua mente</p>
                 </div>
                 
-                <!-- ÁREA DE BOTÕES ATUALIZADA -->
-                <div class="header-actions">
-                    <button id="registerBtn" class="register-button">Registrar</button>
-                    <button id="loginBtn" class="login-button">Login</button>
-                </div>
+                <!-- CÓDIGO NOVO PARA COLAR NO LUGAR -->
+<div class="header-actions">
+    <!-- Botão de Tema -->
+    <button id="themeToggle" class="theme-btn">🌙</button>
+    
+    <!-- Container dos Botões de Login/Registro (Aparece quando NÃO está logado) -->
+    <div id="auth-buttons-container">
+        <button id="registerBtn" class="register-button">Registrar</button>
+        <button id="loginBtn" class="login-button">Login</button>
+    </div>
+
+    <!-- Container do Usuário Logado (Aparece quando ESTÁ logado) -->
+    <div id="user-logged-container" class="user-menu-container">
+        <!-- Imagem genérica de avatar -->
+        <img src="https://i.pravatar.cc/150?img=5" alt="Avatar" class="user-avatar">
+        <span class="user-dropdown-arrow">▼</span>
+        
+        <!-- O Menu Dropdown (Ver Perfil, Suporte, Sair) -->
+        <div class="user-dropdown-menu" id="userDropdown">
+            <ul>
+                <li><a href="#" id="btnProfile"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Ver Perfil</a></li>
+                <li><a href="contato.html"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/></svg> Suporte</a></li>
+                <li><a href="#" id="btnLogout"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg> Sair</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
             </div>
         </div>
@@ -115,10 +137,89 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 NexFit. Todos os direitos reservados. | <a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
-            </div>
+    <p>
+        &copy; 2024 NexFit. Todos os direitos reservados. | 
+        <a href="#">Política de Privacidade</a> | 
+        <a href="#">Termos de Uso</a> | 
+        <!-- Link para o Dashboard -->
+        <a href="http://localhost:3000/admin" target="_blank" style="color: #555; margin-left: 15px; text-decoration: none;">🔐 Área Admin</a>
+    </p>
+</div>>
         </div>
     </footer>
+
+    <!-- MODAL DE PERFIL DO USUÁRIO -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" id="closeProfileModal">×</span>
+        <h2>Meu Perfil</h2>
+        <div class="profile-info">
+            <p><strong>E-mail:</strong> <span id="profileEmail">Carregando...</span></p>
+            <p><strong>Senha:</strong> ******** (Segurança)</p>
+        </div>
+        <button class="modal-botao-comprar" onclick="document.getElementById('profileModal').style.display='none'">Fechar</button>
+    </div>
+</div>
+
+<!-- ======================================================= -->
+    <!-- COLE ISSO NO FINAL DE TODAS AS PÁGINAS (ANTES DO SCRIPT) -->
+    <!-- ======================================================= -->
+
+    <!-- MODAL DE LOGIN -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <form id="loginForm" class="modal-form">
+                <h2>Login NexFit</h2>
+                <label for="loginEmail">E-mail</label>
+                <input type="email" id="loginEmail" name="email" required>
+                
+                <label for="loginPassword">Senha</label>
+                <input type="password" id="loginPassword" name="senha" required>
+                
+                <button type="submit">Entrar</button>
+
+                <p class="form-switcher-link">Não tem uma conta? <a href="#" id="switchToRegister">Registre-se</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE REGISTRO -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <form id="registerForm" class="modal-form">
+                <h2>Crie sua Conta</h2>
+                <label for="registerEmail">E-mail</label>
+                <input type="email" id="registerEmail" name="email" required>
+                
+                <label for="registerPassword">Senha (mínimo 6 caracteres)</label>
+                <input type="password" id="registerPassword" name="senha" required>
+
+                <label for="confirmPassword">Confirme a Senha</label>
+                <input type="password" id="confirmPassword" name="confirm_senha" required>
+                
+                <button type="submit">Registrar</button>
+
+                <p class="form-switcher-link">Já tem uma conta? <a href="#" id="switchToLogin">Faça Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE PERFIL DO USUÁRIO -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeProfileModal">×</span>
+            <h2>Meu Perfil</h2>
+            <div class="profile-info">
+                <p><strong>E-mail:</strong> <span id="profileEmail">Carregando...</span></p>
+                <p><strong>Senha:</strong> ******** (Segurança)</p>
+            </div>
+            <button class="modal-botao-comprar" onclick="document.getElementById('profileModal').style.display='none'">Fechar</button>
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
 
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

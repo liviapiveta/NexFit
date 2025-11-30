@@ -26,12 +26,15 @@ app.use(session({
 
 // --- DEFINIÇÃO DOS MODELOS (SCHEMAS) ---
 
-// Modelo de Produto (sem alteração)
+// --- DEFINIÇÃO DO MODELO DE PRODUTO (ATUALIZADO) ---
 const productSchema = new mongoose.Schema({
     id: { type: Number, required: true, unique: true },
     nome: { type: String, required: true },
     preco: { type: String, required: true },
-    categoria: { type: String, required: true }
+    categoria: { type: String, required: true },
+    subcategoria: { type: String, required: false }, // Importante para Roupas
+    imagemUrl: { type: String, required: false }, // Importante para novos produtos
+    cores: { type: Array, required: false } // Importante para produtos antigos (JSON)
 });
 const Product = mongoose.model('Product', productSchema);
 
@@ -112,7 +115,12 @@ app.post('/api/login', async (req, res) => {
         // 3. Cria a sessão para o usuário (se necessário no futuro)
         req.session.user = { id: user._id, email: user.email };
 
-        res.status(200).json({ success: true, message: 'Login realizado com sucesso!' });
+        // Retornamos também o email e o id para usar no frontend
+    res.status(200).json({ 
+    success: true, 
+    message: 'Login realizado com sucesso!', 
+    user: { id: user._id, email: user.email } 
+});
     } catch (error) {
         res.status(500).json({ success: false, message: 'Erro no servidor ao tentar fazer login.' });
     }
