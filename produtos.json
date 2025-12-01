@@ -139,35 +139,28 @@
     },
     {
         "id": 13,
-        "nome": "Suplemento 1",
-        "preco": "100,00",
+        "nome": "Creatina Monohidratada Creapure Original Pote 250g",
+        "preco": "159,80",
         "link": "pagina-produto-13.html",
-        "categoria": "Suplementos",
-        "cores": [
-            { "nome": "Preto", "imagemUrl": "imagens/Relógio Esportivo para Treino.png" },
-            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
-        ]
+        "categoria": "Suplementos"
     },
+
     {
         "id": 14,
-        "nome": "Suplemento 2",
-        "preco": "100,00",
+        "nome": "Whey Protein Concentrado 1kg Growth Supplements - Chocolate",
+        "preco": "157,00",
         "link": "pagina-produto-14.html",
         "categoria": "Suplementos",
         "cores": [
-            { "nome": "Preto", "imagemUrl": "imagens/Relógio Esportivo para Treino.png" },
-            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
+            { "nome": "Chocolate", "imagemUrl": "imagens/whey protein.webp" },
+            { "nome": "Creme", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
         ]
     },    
     {
         "id": 15,
-        "nome": "Suplemento 3",
-        "preco": "100,00",
+        "nome": "Novo Panic Pré-treino 300g Melancia - Adaptogen",
+        "preco": "64,80",
         "link": "pagina-produto-15.html",
-        "categoria": "Suplementos",
-        "cores": [
-            { "nome": "Preto", "imagemUrl": "imagens/Relógio Esportivo para Treino.png" },
-            { "nome": "Cinza (Alternativo)", "imagemUrl": "imagens/Camiseta_Masculina_Cinza_Escuro.png" }
-        ]
+        "categoria": "Suplementos"
     }
 ]

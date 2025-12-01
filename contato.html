@@ -62,7 +62,6 @@
                     <li><a href="home.html">Home</a></li>
                     <li><a href="produtos.html">Produtos</a></li>
                     <li><a href="contato.html">Contato</a></li>
-                    <li><a href="carrinho.html">Carrinho</a></li>
                 </ul>
             </nav>
         </div>
@@ -79,19 +78,19 @@
             <!-- SEÇÃO DE INFORMAÇÕES DE CONTATO -->
             <div class="contact-info-cards">
                 <div class="info-card">
-                    <img src="imagens/whatsapp-icon.png" alt="WhatsApp Icon" class="info-card-icon">
+                    <img src="imagens/whats.png" alt="WhatsApp Icon" class="info-card-icon">
                     <h3>WhatsApp</h3>
                     <p>Para um atendimento rápido e direto.</p>
-                    <a href="https://wa.me/5544991088974" target="_blank">(44) 99108-8974</a>
+                    <a href="https://wa.me/5544991089874" target="_blank">(44) 99108-8974</a>
                 </div>
                 <div class="info-card">
-                    <img src="imagens/email-icon.png" alt="Email Icon" class="info-card-icon">
+                    <img src="imagens/email.png" alt="Email Icon" class="info-card-icon">
                     <h3>E-mail</h3>
                     <p>Envie suas dúvidas para nosso suporte.</p>
-                    <a href="mailto:liviabaessa09@gmail.com">liviabaessa09@gmail.com</a>
+                    <a href="mailto:brunograciano230@gmail.com">brunograciano230@gmail.com</a>
                 </div>
                 <div class="info-card">
-                    <img src="imagens/location-icon.png" alt="Location Icon" class="info-card-icon">
+                    <img src="imagens/localização.png" alt="Location Icon" class="info-card-icon">
                     <h3>Nosso Endereço</h3>
                     <p>Av. Brasil, 1234 - Centro<br>Maringá - PR, 87013-000</p>
                     <a href="#mapa" class="scroll-to-map">Ver no mapa</a>
@@ -118,7 +117,7 @@
                         <label for="message">Sua Mensagem</label>
                         <textarea id="message" name="message" rows="6" required></textarea>
                     </div>
-                    <button type="submit" class="submit-button" onclick="enviarEmail">Enviar Mensagem</button>
+                    <button type="submit" class="submit-button">Enviar Mensagem</button>
                 </form>
             </div>
 
@@ -152,14 +151,14 @@
                         <li><a href="home.html">Home</a></li>
                         <li><a href="produtos.html">Produtos</a></li>
                         <li><a href="contato.html">Contato</a></li>
-                        <li><a href="carrinho.html">Carrinho</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
                     </ul>
                 </div>
                 <div class="footer-links-column">
                     <h4>Contato</h4>
                     <ul>
-                        <li><a href="mailto:liviabaessa09@gmail.com">liviabaessa09@gmail.com</a></li>
-                        <li><a href="https://wa.me/5544991088974">(44) 99108-8974</a></li>
+                        <li><a href="mailto:contato@nexfit.com.br">contato@nexfit.com.br</a></li>
+                        <li><a href="#">(44) 99972-9063</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
@@ -258,14 +257,5 @@
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
-    <script>
-        function enviarEmail(){
-    const emailDestino = "liviabaessa09@gmail.com";
-    const assunto = document.getElementById("subject").value;
-    const corpoEmail = document.getElementById("message").value;
-    const link = `mailto:${emailDestino}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpoEmail)}`;
-    window.location.href = link;
-}
-    </script>
 </body>
 </html>

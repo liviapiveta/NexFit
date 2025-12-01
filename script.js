@@ -414,7 +414,6 @@ function setupSizeSelection() {
     });
 }
 
-
 // --- INICIALIZAÇÃO QUANDO A PÁGINA CARREGA ---
 document.addEventListener('DOMContentLoaded', () => {
     // 1. VERIFICA O LOGIN ASSIM QUE A PÁGINA ABRE
@@ -442,5 +441,53 @@ document.addEventListener('DOMContentLoaded', () => {
         carrinhoLi.innerHTML = '<a href="carrinho.html">Carrinho</a>';
         mainNavUl.appendChild(carrinhoLi);
     }
-
 });
+
+// =========================================================================
+// --- LÓGICA DO FORMULÁRIO DE CONTATO ---
+// =========================================================================
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Impede a página de recarregar
+
+        // Pega os dados dos campos
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+
+        // Muda o texto do botão para dar feedback
+        const submitButton = contactForm.querySelector('.submit-button');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Enviando...';
+        submitButton.disabled = true;
+
+        try {
+            const response = await fetch(`${API_URL}/contact`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
+                contactForm.reset(); // Limpa o formulário
+            } else {
+                throw new Error(data.message || 'Erro ao enviar.');
+            }
+        } catch (error) {
+            console.error('Erro contato:', error);
+            alert('Erro ao enviar mensagem. Tente novamente mais tarde.');
+        } finally {
+            // Volta o botão ao normal
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
+    });
+}

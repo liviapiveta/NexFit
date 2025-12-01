@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer'); // <--- ADICIONE ISSO NO TOPO
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -196,6 +197,46 @@ app.get('/admin/logout', (req, res) => {
     });
 });
 
+// --- ROTA DE ENVIO DE E-MAIL (CONTATO) ---
+app.post('/api/contact', async (req, res) => {
+    const { name, email, subject, message } = req.body;
+
+    // 1. Configura o Transporte (O Carteiro)
+    const transporter = nodemailer.createTransport({
+        service: 'gmail', // ou 'hotmail', 'outlook'
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
+
+    // 2. Configura a Mensagem
+    const mailOptions = {
+        from: process.env.EMAIL_USER, // Quem envia (seu servidor)
+        to: 'seu_email_onde_vai_chegar@gmail.com', // <--- COLOCA SEU EMAIL AQUI PARA RECEBER
+        replyTo: email, // Quando você clicar em responder, vai para o cliente
+        subject: `NexFit Contato: ${subject}`,
+        text: `
+            Você recebeu uma nova mensagem do site NexFit!
+            
+            Nome: ${name}
+            E-mail: ${email}
+            Assunto: ${subject}
+            
+            Mensagem:
+            ${message}
+        `
+    };
+
+    // 3. Envia
+    try {
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ success: true, message: 'E-mail enviado com sucesso!' });
+    } catch (error) {
+        console.error('Erro ao enviar e-mail:', error);
+        res.status(500).json({ success: false, message: 'Erro ao enviar e-mail.' });
+    }
+});
 
 // --- INICIAR O SERVIDOR ---
 app.listen(PORT, () => {
