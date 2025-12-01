@@ -320,7 +320,7 @@ async function loadProducts() {
             // 1. Se tiver URL direta (adicionada no admin), usa ela.
             // 2. Se não, tenta pegar do sistema antigo de cores.
             // 3. Se não tiver nada, coloca uma imagem padrão.
-            let imageUrl = 'placeholder.png';
+            let imageUrl = 'imagens/placeholder.png';
             
             if (product.imagemUrl && product.imagemUrl.trim() !== '') {
                 imageUrl = product.imagemUrl;
@@ -414,6 +414,7 @@ function setupSizeSelection() {
     });
 }
 
+
 // --- INICIALIZAÇÃO QUANDO A PÁGINA CARREGA ---
 document.addEventListener('DOMContentLoaded', () => {
     // 1. VERIFICA O LOGIN ASSIM QUE A PÁGINA ABRE
@@ -443,4 +444,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
-

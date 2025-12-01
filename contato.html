@@ -118,7 +118,7 @@
                         <label for="message">Sua Mensagem</label>
                         <textarea id="message" name="message" rows="6" required></textarea>
                     </div>
-                    <button type="submit" class="submit-button">Enviar Mensagem</button>
+                    <button type="submit" class="submit-button" onclick="enviarEmail">Enviar Mensagem</button>
                 </form>
             </div>
 
@@ -258,5 +258,14 @@
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
+    <script>
+        function enviarEmail(){
+    const emailDestino = "liviabaessa09@gmail.com";
+    const assunto = document.getElementById("subject").value;
+    const corpoEmail = document.getElementById("message").value;
+    const link = `mailto:${emailDestino}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpoEmail)}`;
+    window.location.href = link;
+}
+    </script>
 </body>
 </html>
