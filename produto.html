@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - NexFit</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Pacifico&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-area">
+                    <img src="imagens/Logo 02 NexFit.png" alt="Logo NexFit">
+                    <p class="tagline">Fortaleça seu corpo. Transfira sua mente</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button id="themeToggle" class="theme-btn">🌙</button>
+                    <div id="auth-buttons-container">
+                        <button id="registerBtn" class="register-button">Registrar</button>
+                        <button id="loginBtn" class="login-button">Login</button>
+                    </div>
+                    <div id="user-logged-container" class="user-menu-container" style="display: none;">
+                        <img src="https://ui-avatars.com/api/?name=User&background=random" alt="Avatar" class="user-avatar">
+                        <span class="user-dropdown-arrow">▼</span>
+                        <div class="user-dropdown-menu" id="userDropdown">
+                            <ul>
+                                <li><a href="#" id="btnProfile">Ver Perfil</a></li>
+                                <li><a href="contato.html">Suporte</a></li>
+                                <li><a href="#" id="btnLogout">Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="main-navigation">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <main class="product-detail-page">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="produtos.html">Produtos</a> > <span id="breadcrumb-category">Detalhes</span>
+            </div>
+
+            <div class="product-detail-grid">
+                <div class="product-detail-image">
+                    <!-- A imagem será injetada aqui -->
+                    <img src="imagens/placeholder.png" alt="Produto" id="product-image">
+                </div>
+                <div class="product-detail-info">
+                    <!-- O nome e preço serão injetados aqui -->
+                    <h1 class="product-detail-name" id="product-name">Carregando...</h1>
+                    <p class="product-detail-price" id="product-price">R$ --,--</p>
+
+                    <div class="product-options">
+                        <!-- Se for roupa, mostra tamanhos -->
+                        <div class="option-group" id="size-group">
+                            <span class="option-label">Tamanho</span>
+                            <div class="size-options">
+                                <button class="size-button">XS</button>
+                                <button class="size-button">S</button>
+                                <button class="size-button active">M</button>
+                                <button class="size-button">L</button>
+                                <button class="size-button">XL</button>
+                                <button class="size-button">XXL</button>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <span class="option-label">Variação</span>
+                            <div class="color-options" id="color-options-container">
+                                <!-- Botões gerados via JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="add-to-cart-button" id="add-to-cart-btn">ADICIONAR AO CARRINHO</button>
+
+                    <div class="product-description">
+                        <h3>Descrição</h3>
+                        <p>Produto de alta qualidade selecionado para melhorar sua performance e estilo de vida. Ideal para quem busca excelência nos treinos e no dia a dia.</p>
+                        <ul>
+                            <li>Alta Durabilidade</li>
+                            <li>Design Moderno</li>
+                            <li>Garantia de Qualidade NexFit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modais (Login, Registro, Perfil) -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <form id="loginForm" class="modal-form">
+                <h2>Login NexFit</h2>
+                <label for="loginEmail">E-mail</label>
+                <input type="email" id="loginEmail" name="email" required>
+                <label for="loginPassword">Senha</label>
+                <input type="password" id="loginPassword" name="senha" required>
+                <button type="submit">Entrar</button>
+                <p class="form-switcher-link">Não tem uma conta? <a href="#" id="switchToRegister">Registre-se</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <form id="registerForm" class="modal-form">
+                <h2>Crie sua Conta</h2>
+                <label for="registerEmail">E-mail</label>
+                <input type="email" id="registerEmail" name="email" required>
+                <label for="registerPassword">Senha</label>
+                <input type="password" id="registerPassword" name="senha" required>
+                <label for="confirmPassword">Confirme a Senha</label>
+                <input type="password" id="confirmPassword" name="confirm_senha" required>
+                <button type="submit">Registrar</button>
+                <p class="form-switcher-link">Já tem uma conta? <a href="#" id="switchToLogin">Faça Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeProfileModal">×</span>
+            <h2>Meu Perfil</h2>
+            <div class="profile-info">
+                <p><strong>E-mail:</strong> <span id="profileEmail">...</span></p>
+            </div>
+            <button class="modal-botao-comprar" onclick="document.getElementById('profileModal').style.display='none'">Fechar</button>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-area">
+                    <img src="imagens/Logo 02 NexFit.png" alt="Logo NexFit">
+                    <p class="tagline">Fortaleça seu corpo. Transfira sua mente.</p>
+                </div>
+                <div class="footer-links-column">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="produtos.html">Produtos</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-column">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="mailto:contato@nexfit.com.br">contato@nexfit.com.br</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NexFit. | <a href="/admin" target="_blank" style="color:#555; text-decoration:none;">🔐 Admin</a></p>
+            </div>
+        </div>
+    </footer>   
+
+    <script src="script.js"></script>
+</body>
+</html>

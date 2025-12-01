@@ -1,4 +1,4 @@
-// --- LÓGICA GERAL DOS MODAIS E TEMA ---
+// --- ELEMENTOS DO DOM ---
 const loginBtn = document.getElementById('loginBtn');
 const loginModal = document.getElementById('loginModal');
 const loginForm = document.getElementById('loginForm');
@@ -9,7 +9,7 @@ const closeButtons = document.querySelectorAll('.close-button');
 const switchToRegisterLink = document.getElementById('switchToRegister');
 const switchToLoginLink = document.getElementById('switchToLogin');
 
-// Elementos do Usuário Logado
+// Usuário
 const authButtonsContainer = document.getElementById('auth-buttons-container');
 const userLoggedContainer = document.getElementById('user-logged-container');
 const userDropdown = document.getElementById('userDropdown');
@@ -19,156 +19,96 @@ const profileModal = document.getElementById('profileModal');
 const profileEmailSpan = document.getElementById('profileEmail');
 const closeProfileModal = document.getElementById('closeProfileModal');
 
-// URL do nosso backend
+// API URL (Backend)
 const API_URL = 'http://localhost:3000/api';
 
-// --- FUNÇÃO PARA VERIFICAR SE O USUÁRIO ESTÁ LOGADO ---
-function checkLoginState() {
-    const user = JSON.parse(localStorage.getItem('nexfitUser'));
-
-    if (user) {
-        // Se tem usuário salvo, esconde botões de login e mostra o avatar
-        if(authButtonsContainer) authButtonsContainer.style.display = 'none';
-        if(userLoggedContainer) userLoggedContainer.style.display = 'flex';
-    } else {
-        // Se não tem, mostra botões de login e esconde o avatar
-        if(authButtonsContainer) authButtonsContainer.style.display = 'flex';
-        if(userLoggedContainer) userLoggedContainer.style.display = 'none';
-    }
-}
-
-// --- LÓGICA DO MENU DROPDOWN ---
-if (userLoggedContainer) {
-    userLoggedContainer.addEventListener('click', (e) => {
-        // Evita que o clique feche o menu imediatamente
-        e.stopPropagation(); 
-        userDropdown.classList.toggle('show');
-    });
-}
-
-// Fechar o dropdown se clicar fora dele
-window.addEventListener('click', () => {
-    if (userDropdown && userDropdown.classList.contains('show')) {
-        userDropdown.classList.remove('show');
-    }
-});
-
-// --- LÓGICA DE LOGOUT ---
-if (btnLogout) {
-    btnLogout.addEventListener('click', (e) => {
-        e.preventDefault();
-        // Remove o usuário do armazenamento
-        localStorage.removeItem('nexfitUser');
-        alert('Você saiu da sua conta.');
-        // Atualiza a tela
-        checkLoginState();
-        // Recarrega a página para limpar estados
-        window.location.reload();
-    });
-}
-
-// --- LÓGICA DO MODAL DE PERFIL ---
-if (btnProfile) {
-    btnProfile.addEventListener('click', (e) => {
-        e.preventDefault();
-        const user = JSON.parse(localStorage.getItem('nexfitUser'));
-        if (user) {
-            profileEmailSpan.textContent = user.email;
-            profileModal.style.display = 'block';
-        }
-    });
-}
-
-if (closeProfileModal) {
-    closeProfileModal.addEventListener('click', () => {
-        profileModal.style.display = 'none';
-    });
-}
-
-// Fecha modais ao clicar fora
-window.addEventListener('click', (event) => {
-    if (event.target === loginModal || event.target === registerModal || event.target === profileModal) {
-        closeAllModals();
-        if(profileModal) profileModal.style.display = 'none';
-    }
-});
-
-// --- FUNÇÕES AUXILIARES ---
+// --- FUNÇÕES DE MODAL ---
 const closeAllModals = () => {
     if (loginModal) loginModal.style.display = 'none';
     if (registerModal) registerModal.style.display = 'none';
+    if (profileModal) profileModal.style.display = 'none';
 };
 
-// Eventos de abrir modais de login/registro
 if (loginBtn) loginBtn.addEventListener('click', () => { closeAllModals(); loginModal.style.display = 'block'; });
 if (registerBtn) registerBtn.addEventListener('click', () => { closeAllModals(); registerModal.style.display = 'block'; });
 
-closeButtons.forEach(button => {
-    button.addEventListener('click', closeAllModals);
+if(closeButtons) closeButtons.forEach(button => button.addEventListener('click', closeAllModals));
+window.addEventListener('click', (event) => {
+    if (event.target === loginModal || event.target === registerModal || event.target === profileModal) closeAllModals();
 });
 
 if (switchToRegisterLink) switchToRegisterLink.addEventListener('click', (e) => { e.preventDefault(); closeAllModals(); registerModal.style.display = 'block'; });
 if (switchToLoginLink) switchToLoginLink.addEventListener('click', (e) => { e.preventDefault(); closeAllModals(); loginModal.style.display = 'block'; });
 
+// --- LOGIN STATE ---
+function checkLoginState() {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem('nexfitUser')); } catch (e) {}
 
-// --- LÓGICA DO TEMA ESCURO ---
-const themeToggleBtn = document.getElementById('themeToggle');
-const body = document.body;
-const currentTheme = localStorage.getItem('theme');
-
-if (currentTheme === 'dark') {
-    body.classList.add('dark-mode');
-    if(themeToggleBtn) themeToggleBtn.textContent = '☀️';
+    if (authButtonsContainer && userLoggedContainer) {
+        if (user) {
+            authButtonsContainer.style.display = 'none';
+            userLoggedContainer.style.display = 'flex';
+        } else {
+            authButtonsContainer.style.display = 'flex';
+            userLoggedContainer.style.display = 'none';
+        }
+    }
 }
 
-if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-            themeToggleBtn.textContent = '☀️';
-        } else {
-            localStorage.setItem('theme', 'light');
-            themeToggleBtn.textContent = '🌙';
-        }
+if (userLoggedContainer) {
+    userLoggedContainer.addEventListener('click', (e) => { e.stopPropagation(); userDropdown.classList.toggle('show'); });
+    window.addEventListener('click', () => { if (userDropdown.classList.contains('show')) userDropdown.classList.remove('show'); });
+}
+
+if (btnLogout) {
+    btnLogout.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('nexfitUser');
+        checkLoginState();
+        window.location.reload();
     });
 }
 
-// =========================================================================
-// --- LÓGICA DE LOGIN E REGISTRO ATUALIZADA ---
-// =========================================================================
+if (btnProfile) {
+    btnProfile.addEventListener('click', (e) => {
+        e.preventDefault();
+        const user = JSON.parse(localStorage.getItem('nexfitUser'));
+        if (user && profileEmailSpan) {
+            profileEmailSpan.textContent = user.email;
+            closeAllModals();
+            profileModal.style.display = 'block';
+        }
+    });
+}
+if (closeProfileModal) closeProfileModal.addEventListener('click', () => { if(profileModal) profileModal.style.display = 'none'; });
 
+// --- TEMA ESCURO ---
+const themeToggleBtn = document.getElementById('themeToggle');
+const body = document.body;
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') { body.classList.add('dark-mode'); if(themeToggleBtn) themeToggleBtn.textContent = '☀️'; }
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); themeToggleBtn.textContent = '☀️'; }
+        else { localStorage.setItem('theme', 'light'); themeToggleBtn.textContent = '🌙'; }
+    });
+}
+
+// --- API LOGIN/REGISTER ---
 if (registerForm) {
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const email = document.getElementById('registerEmail').value;
         const password = document.getElementById('registerPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
-        
-        if (password !== confirmPassword) {
-            alert('As senhas não coincidem!');
-            return;
-        }
-
+        if (password !== confirmPassword) { alert('As senhas não coincidem!'); return; }
         try {
-            const response = await fetch(`${API_URL}/register`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
-
+            const response = await fetch(`${API_URL}/register`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) });
             const data = await response.json();
-
-            if (response.ok) { 
-                alert(data.message || 'Registro realizado com sucesso!');
-                closeAllModals();
-            } else {
-                throw new Error(data.message || 'Erro desconhecido no servidor.');
-            }
-        } catch (error) {
-            console.error('Erro na requisição de registro:', error);
-            alert('Falha no registro: ' + error.message);
-        }
+            if (response.ok) { alert(data.message); closeAllModals(); } else { throw new Error(data.message); }
+        } catch (error) { alert('Falha: ' + error.message); }
     });
 }
 
@@ -177,54 +117,35 @@ if (loginForm) {
         event.preventDefault();
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
-
         try {
-            const response = await fetch(`${API_URL}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
-
+            const response = await fetch(`${API_URL}/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) });
             const data = await response.json();
-
             if (response.ok) {
-                alert(data.message || 'Login realizado com sucesso!');
-                
-                // SALVA O USUÁRIO NO NAVEGADOR
+                alert(data.message);
                 localStorage.setItem('nexfitUser', JSON.stringify(data.user));
-                
                 closeAllModals();
-                // ATUALIZA O CABEÇALHO IMEDIATAMENTE
                 checkLoginState();
-            } else {
-                throw new Error(data.message || 'Falha no login.');
-            }
-        } catch (error) {
-            console.error('Erro na requisição de login:', error);
-            alert('Falha no login: ' + error.message);
-        }
+            } else { throw new Error(data.message); }
+        } catch (error) { alert('Falha: ' + error.message); }
     });
 }
 
-// --- LÓGICA DO CARRINHO E PRODUTOS (IGUAL AO SEU) ---
+// --- CARRINHO ---
 function addToCart(product) {
     const sizeEl = document.querySelector('.size-button.active');
     const colorEl = document.querySelector('.color-button.active');
-
     const itemToAdd = {
         id: product.id,
         nome: product.nome,
         preco: product.preco,
-        imagemUrl: document.getElementById('product-image').src,
+        imagemUrl: document.getElementById('product-image') ? document.getElementById('product-image').src : '',
         tamanho: sizeEl ? sizeEl.textContent : null,
         cor: colorEl ? colorEl.textContent : 'Única',
         cartItemId: `item-${Date.now()}`
     };
-
     let cart = JSON.parse(localStorage.getItem('nexfitCart')) || [];
     cart.push(itemToAdd);
     localStorage.setItem('nexfitCart', JSON.stringify(cart));
-    
     alert(`${itemToAdd.nome} foi adicionado ao carrinho!`);
 }
 
@@ -241,9 +162,8 @@ function displayCart() {
     if (!cartContainer) return;
     
     const cart = JSON.parse(localStorage.getItem('nexfitCart')) || [];
-
     cartContainer.innerHTML = '';
-    if (summaryContainer) summaryContainer.innerHTML = '';
+    if(summaryContainer) summaryContainer.innerHTML = '';
 
     if (cart.length === 0) {
         cartContainer.innerHTML = '<p class="cart-empty-message">Seu carrinho está vazio.</p>';
@@ -251,13 +171,9 @@ function displayCart() {
     }
 
     let subtotal = 0;
-
     cart.forEach(item => {
         let options = `Cor: ${item.cor}`;
-        if (item.tamanho) {
-            options += ` | Tamanho: ${item.tamanho}`;
-        }
-        
+        if (item.tamanho) options += ` | Tamanho: ${item.tamanho}`;
         const itemHTML = `
             <div class="cart-item">
                 <img src="${item.imagemUrl}" alt="${item.nome}" class="cart-item-image">
@@ -267,46 +183,35 @@ function displayCart() {
                     <p class="cart-item-price">R$${item.preco}</p>
                 </div>
                 <button class="remove-from-cart-btn" data-item-id="${item.cartItemId}">Remover</button>
-            </div>
-        `;
+            </div>`;
         cartContainer.innerHTML += itemHTML;
-        
         const price = parseFloat(item.preco.replace(',', '.'));
-        if (!isNaN(price)) {
-            subtotal += price;
-        }
+        if (!isNaN(price)) subtotal += price;
     });
 
-    if (summaryContainer) {
-        const summaryHTML = `
+    if(summaryContainer) {
+        summaryContainer.innerHTML = `
             <div class="cart-total">
                 <p>Subtotal: <strong>R$${subtotal.toFixed(2).replace('.', ',')}</strong></p>
                 <button class="checkout-button">Finalizar Compra</button>
-            </div>
-        `;
-        summaryContainer.innerHTML = summaryHTML;
+            </div>`;
     }
 
     document.querySelectorAll('.remove-from-cart-btn').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const cartItemId = event.target.dataset.itemId;
-            removeFromCart(cartItemId);
-        });
+        button.addEventListener('click', (event) => removeFromCart(event.target.dataset.itemId));
     });
 }
 
-// --- LÓGICA PARA CARREGAR PRODUTOS (DO BANCO DE DADOS) ---
+// --- CARREGAMENTO DE PRODUTOS ---
+
 async function loadProducts() {
-    // Verifica se existe pelo menos um grid na tela antes de tentar carregar
-    if (!document.getElementById('grid-academia') && !document.getElementById('grid-acessorios')) return;
+    if (!document.getElementById('grid-academia')) return;
 
     try {
-        // Busca os produtos da sua API (Banco de Dados)
         const response = await fetch(`${API_URL}/products`);
         if (!response.ok) throw new Error('Falha ao buscar produtos');
         const products = await response.json();
         
-        // Mapeamento dos locais onde os produtos devem entrar no HTML
         const containers = {
             academia: document.getElementById('grid-academia'),
             termicas: document.getElementById('grid-termicas'),
@@ -316,19 +221,12 @@ async function loadProducts() {
         };
         
         products.forEach(product => {
-            // Lógica Inteligente de Imagem:
-            // 1. Se tiver URL direta (adicionada no admin), usa ela.
-            // 2. Se não, tenta pegar do sistema antigo de cores.
-            // 3. Se não tiver nada, coloca uma imagem padrão.
             let imageUrl = 'imagens/placeholder.png';
-            
-            if (product.imagemUrl && product.imagemUrl.trim() !== '') {
-                imageUrl = product.imagemUrl;
-            } else if (product.cores && product.cores.length > 0) {
-                imageUrl = product.cores[0].imagemUrl;
-            }
+            if (product.imagemUrl && product.imagemUrl.trim() !== '') imageUrl = product.imagemUrl;
+            else if (product.cores && product.cores.length > 0) imageUrl = product.cores[0].imagemUrl;
 
-            const link = `pagina-produto-${product.id}.html`;
+            // *** MUDANÇA IMPORTANTE: Link genérico com ID ***
+            const link = `produto.html?id=${product.id}`;
 
             const productCardHTML = `
                 <a href="${link}" class="product-card">
@@ -339,68 +237,89 @@ async function loadProducts() {
                     <p class="product-price">R$${product.preco}</p>
                 </a>`;
 
-            // Lógica para descobrir em qual DIV o produto deve entrar
-            // Se tiver subcategoria (ex: Academia), usa ela. Se não, usa a categoria (ex: Acessorios).
-            // Remove acentos e coloca em minúsculo para bater com os IDs do HTML.
             let categoriaChave = '';
-            
-            if (product.subcategoria) {
-                categoriaChave = product.subcategoria.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            } else if (product.categoria) {
-                categoriaChave = product.categoria.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            }
+            if (product.subcategoria) categoriaChave = product.subcategoria.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            else if (product.categoria) categoriaChave = product.categoria.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
             const targetContainer = containers[categoriaChave];
-            
-            if (targetContainer) {
-                targetContainer.innerHTML += productCardHTML;
-            }
+            if (targetContainer) targetContainer.innerHTML += productCardHTML;
         });
-    } catch (error) {
-        console.error("Erro ao carregar produtos:", error);
-    }
+    } catch (error) { console.error("Erro ao carregar produtos:", error); }
 }
 
-async function loadProductDetails(productId) {
+// --- DETALHES DO PRODUTO (PÁGINA GENÉRICA) ---
+async function loadProductDetails() {
+    // 1. Pega o ID da URL (ex: produto.html?id=123)
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = parseInt(urlParams.get('id'));
+
+    if (isNaN(productId)) return; // Se não tem ID, não faz nada
+
     const productImage = document.getElementById('product-image');
+    const nameEl = document.getElementById('product-name');
+    const priceEl = document.getElementById('product-price');
     const colorContainer = document.getElementById('color-options-container');
     const addToCartButton = document.getElementById('add-to-cart-btn');
-
-    if (!productImage || !colorContainer || !addToCartButton) return;
+    const breadcrumbCategory = document.getElementById('breadcrumb-category');
 
     try {
-        const response = await fetch('produtos.json');
+        // Busca TODOS os produtos para encontrar o certo (poderia ser uma rota /products/:id no futuro)
+        const response = await fetch(`${API_URL}/products`);
         const products = await response.json();
         const product = products.find(p => p.id === productId);
 
-        if (!product) return;
-
-        colorContainer.innerHTML = '';
-        
-        if (product.cores && product.cores.length > 0) {
-            product.cores.forEach((cor, index) => {
-                const colorButton = document.createElement('button');
-                colorButton.className = 'color-button';
-                colorButton.textContent = cor.nome;
-                
-                if (index === 0) {
-                    colorButton.classList.add('active');
-                }
-
-                colorButton.addEventListener('click', () => {
-                    productImage.src = cor.imagemUrl;
-                    document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('active'));
-                    colorButton.classList.add('active');
-                });
-
-                colorContainer.appendChild(colorButton);
-            });
+        if (!product) {
+            alert('Produto não encontrado!');
+            return;
         }
+
+        // PREENCHE A TELA
+        if (nameEl) nameEl.textContent = product.nome;
+        if (priceEl) priceEl.textContent = `R$${product.preco}`;
+        if (breadcrumbCategory) breadcrumbCategory.textContent = product.categoria;
+
+        // Imagem Principal
+        let mainImg = 'imagens/placeholder.png';
+        if (product.imagemUrl) mainImg = product.imagemUrl;
+        else if (product.cores && product.cores.length > 0) mainImg = product.cores[0].imagemUrl;
         
-        addToCartButton.addEventListener('click', () => addToCart(product));
+        if (productImage) {
+            productImage.src = mainImg;
+            productImage.onerror = () => { productImage.src = 'imagens/placeholder.png'; };
+        }
+
+        // Cores (Se houver)
+        if (colorContainer) {
+            colorContainer.innerHTML = '';
+            if (product.cores && product.cores.length > 0) {
+                product.cores.forEach((cor, index) => {
+                    const colorButton = document.createElement('button');
+                    colorButton.className = 'color-button';
+                    colorButton.textContent = cor.nome;
+                    if (index === 0) colorButton.classList.add('active');
+
+                    colorButton.addEventListener('click', () => {
+                        productImage.src = cor.imagemUrl;
+                        document.querySelectorAll('.color-button').forEach(btn => btn.classList.remove('active'));
+                        colorButton.classList.add('active');
+                    });
+                    colorContainer.appendChild(colorButton);
+                });
+            } else {
+                // Se não tiver cores, cria um botão "Única" ou esconde
+                colorContainer.innerHTML = '<span style="font-size:0.9em; color:#666;">Padrão</span>';
+            }
+        }
+
+        if (addToCartButton) {
+            // Remove listeners antigos cloning o botão
+            const newBtn = addToCartButton.cloneNode(true);
+            addToCartButton.parentNode.replaceChild(newBtn, addToCartButton);
+            newBtn.addEventListener('click', () => addToCart(product));
+        }
 
     } catch (error) {
-        console.error("Não foi possível carregar os detalhes do produto:", error);
+        console.error("Erro detalhes produto:", error);
     }
 }
 
@@ -414,27 +333,25 @@ function setupSizeSelection() {
     });
 }
 
-// --- INICIALIZAÇÃO QUANDO A PÁGINA CARREGA ---
+// --- INICIALIZAÇÃO ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. VERIFICA O LOGIN ASSIM QUE A PÁGINA ABRE
     checkLoginState();
 
     const path = window.location.pathname.split('/').pop();
 
-    if (path === 'produtos.html') {
+    if (path.includes('produtos.html') || path === '') {
         loadProducts();
     }
-    else if (path === 'carrinho.html') {
+    else if (path.includes('carrinho.html')) {
         displayCart();
     }
-    else if (path.startsWith('pagina-produto-')) {
-        const productId = parseInt(path.match(/\d+/)[0]);
-        if (!isNaN(productId)) {
-            loadProductDetails(productId);
-            setupSizeSelection();
-        }
+    // Verifica se estamos na página genérica
+    else if (path.includes('produto.html')) {
+        loadProductDetails();
+        setupSizeSelection();
     }
     
+    // Adiciona link carrinho
     const mainNavUl = document.querySelector('.main-navigation nav ul');
     if (mainNavUl && !mainNavUl.querySelector('a[href="carrinho.html"]')) {
         const carrinhoLi = document.createElement('li');
@@ -442,52 +359,3 @@ document.addEventListener('DOMContentLoaded', () => {
         mainNavUl.appendChild(carrinhoLi);
     }
 });
-
-// =========================================================================
-// --- LÓGICA DO FORMULÁRIO DE CONTATO ---
-// =========================================================================
-const contactForm = document.getElementById('contactForm');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Impede a página de recarregar
-
-        // Pega os dados dos campos
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
-        };
-
-        // Muda o texto do botão para dar feedback
-        const submitButton = contactForm.querySelector('.submit-button');
-        const originalText = submitButton.textContent;
-        submitButton.textContent = 'Enviando...';
-        submitButton.disabled = true;
-
-        try {
-            const response = await fetch(`${API_URL}/contact`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
-                contactForm.reset(); // Limpa o formulário
-            } else {
-                throw new Error(data.message || 'Erro ao enviar.');
-            }
-        } catch (error) {
-            console.error('Erro contato:', error);
-            alert('Erro ao enviar mensagem. Tente novamente mais tarde.');
-        } finally {
-            // Volta o botão ao normal
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
-        }
-    });
-}
