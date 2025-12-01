@@ -320,7 +320,7 @@ async function loadProducts() {
             // 1. Se tiver URL direta (adicionada no admin), usa ela.
             // 2. Se não, tenta pegar do sistema antigo de cores.
             // 3. Se não tiver nada, coloca uma imagem padrão.
-            let imageUrl = 'imagens/placeholder.png';
+            let imageUrl = 'placeholder.png';
             
             if (product.imagemUrl && product.imagemUrl.trim() !== '') {
                 imageUrl = product.imagemUrl;
@@ -443,3 +443,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
